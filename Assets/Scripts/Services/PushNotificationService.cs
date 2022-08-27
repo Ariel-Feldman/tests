@@ -1,11 +1,14 @@
+using System;
+using UnityEngine.Events;
+
 namespace Services
 {
     public static class PushNotificationService
     {
-        public static void Init()
+        public static void Init(UnityAction<Type, bool> onServiceInit)
         {
-            ServiceResolver.OnServiceInit(true);
+            onServiceInit.Invoke(typeof(PushNotificationService), true);
         }
-        
+    
     }
 }

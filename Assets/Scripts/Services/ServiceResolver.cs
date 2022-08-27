@@ -1,24 +1,23 @@
 using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Services
 {
     public static class ServiceResolver
     {
-        public static UnityAction<bool> OnServiceInit;
+        private static UnityAction<Type, bool> _onServiceInit;
         
         public static void InitServices()
         {
-            OnServiceInit += OnServiceAdded;
-            PushNotificationService.Init();
-            DeepLinkService.Init();
-            
+            _onServiceInit += OnServiceAdded;
+            PushNotificationService.Init(_onServiceInit);
+            DeepLinkService.Init(_onServiceInit);
         }
 
-        private static void OnServiceAdded(bool isActive)
+        private static void OnServiceAdded(Type serviceType, bool isInitialized)
         {
-            throw new NotImplementedException();
+            Debug.Log($"{serviceType} Initialized: {isInitialized}");
         }
-
     } 
 }

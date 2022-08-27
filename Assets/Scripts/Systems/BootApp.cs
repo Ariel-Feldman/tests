@@ -1,10 +1,14 @@
 using Services;
 using UnityEngine;
 
-public class BootApp : MonoBehaviour
+namespace Systems
 {
-    private void Awake()
+    public class BootApp : MonoBehaviour
     {
-        ServiceResolver.InitServices();
+        private void Awake()
+        {
+            ServiceResolver.InitServices();
+            AppStateSystem.Test();
+        }
     }
 }
