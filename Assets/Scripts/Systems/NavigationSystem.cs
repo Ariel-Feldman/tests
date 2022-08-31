@@ -5,7 +5,7 @@ namespace Systems
 {
     public class NavigationSystem : Singleton<NavigationSystem>
     {
-        public void Test()
+        public static void Test()
         {
             Debug.Log("Nav System is working");
         }

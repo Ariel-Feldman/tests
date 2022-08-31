@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,11 +9,15 @@ namespace Services
     {
         private static UnityAction<Type, bool> _onServiceInit;
         
-        public static void InitServices()
+        public static async Task<bool> InitServices()
         {
             _onServiceInit += OnServiceAdded;
-            PushNotificationService.Init(_onServiceInit);
+            if (!await PushNotificationService.Init(_onServiceInit))
+                return false;
+            
             DeepLinkService.Init(_onServiceInit);
+
+            return true;
         }
 
         private static void OnServiceAdded(Type serviceType, bool isInitialized)

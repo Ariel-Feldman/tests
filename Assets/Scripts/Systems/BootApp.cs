@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Services;
 using UnityEngine;
 
@@ -7,8 +9,15 @@ namespace Systems
     {
         private void Awake()
         {
-            ServiceResolver.InitServices();
-            AppStateSystem.Test();
+            Boot();
+        }
+
+        private async Task Boot()
+        {
+            if (!await ServiceResolver.InitServices())
+            {
+            }
+            NavigationSystem.Test();
         }
     }
 }
