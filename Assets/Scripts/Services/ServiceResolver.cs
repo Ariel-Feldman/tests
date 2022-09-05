@@ -11,12 +11,14 @@ namespace Services
         
         public static async Task<bool> InitServices()
         {
+            TaskCompletionSource<string> tcsOfSomeThingToWait = null;
             _onServiceInit += OnServiceAdded;
-            if (!await PushNotificationService.Init(_onServiceInit))
+            if (!await PushNotificationService.Init(tcsOfSomeThingToWait))
                 return false;
             
             DeepLinkService.Init(_onServiceInit);
 
+            await tcsOfSomeThingToWait.Task;
             return true;
         }
 
