@@ -434,6 +434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cf236f0738d994eb05ecb7acebdebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 349447322}
+  _states:
+  - TransitionOut
 --- !u!1 &416569616
 GameObject:
   m_ObjectHideFlags: 0
