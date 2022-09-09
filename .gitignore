@@ -8,8 +8,14 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# MemoryCaptures can get excessive in size.
+# They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
+# Recordings can get excessive in size
+/[Rr]ecordings/
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -53,28 +59,28 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
+*.app
 
 # Crashlytics generated file
 crashlytics-build.properties
 
-.idea/.idea.pool.dir/.idea/.gitignore
-.idea/.idea.pool.dir/.idea/aws.xml
-.idea/.idea.pool.dir/.idea/indexLayout.xml
-.idea/.idea.pool.dir/.idea/vcs.xml
-.idea/.idea.pool/.idea/aws.xml
-Assets/Token.txt
-Assets/Token.txt.meta
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset
-Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
-Assets/TextMesh Pro/Resources/Fonts & Materials/MYRIADPRO-BOLD SDF.asset
-Assets/Resources/Version.json
-Assets/Resources/Version.json.meta
-ProjectSettings/RiderScriptEditorPersistedState.asset
-.DS_Store
-UserSettings/EditorUserSettings.asset
-Assets/Resources/Version.json
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset
-Assets/TextMesh Pro/Resources/Fonts & Materials/MYRIADPRO-BOLD SDF 6.asset
-UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+# Packed Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Temporary auto-generated Android Assets
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+
+############### updated to 09/09/2022
+
+# JetBrain Raider thing
+.idea
+
+# UserSettings Folder
+UserSettings
+UserSettings
+UserSettings
