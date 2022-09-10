@@ -6,13 +6,11 @@ namespace Services
 {
     public static class PushNotificationService
     {
-        public static async Task<bool> Init(UnityAction<Type, bool> onServiceInit)
+        public static async Task Init(UnityAction<Type, bool> onServiceInit)
         {
+            DebugSystem.Log("Starting PN Service");
             await Task.Delay(500);
             onServiceInit.Invoke(typeof(PushNotificationService), true);
-
-            return true;
         }
-    
     }
 }

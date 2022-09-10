@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,22 +8,28 @@ namespace Services
 {
     public static class ServiceResolver
     {
-        private static UnityAction<Type, bool> _onServiceInit;
-        
-        public static async Task<bool> InitServices()
+        public static async Task InitServices()
         {
-            _onServiceInit += OnServiceAdded;
-            if (!await PushNotificationService.Init(_onServiceInit))
-                return false;
+            var tasks = new List<Task>();
             
-            DeepLinkService.Init(_onServiceInit);
+            tasks.Add(new Task( () => PushNotificationService.Init(OnServiceAdded)));
+            tasks.Add(DeepLinkService.Init(OnServiceAdded));
 
-            return true;
+            // await Task.WhenAll(tasks);
+            
+            var t = Task.WhenAll(tasks);
+
+            
+            //
+            // if (t.Status == TaskStatus.RanToCompletion)
+            //     DebugSystem.Log("All system is a go");
+            // else if (t.Status == TaskStatus.Faulted)
+            //     DebugSystem.Log("All system is a No go");
         }
-
+        
         private static void OnServiceAdded(Type serviceType, bool isInitialized)
         {
-            Debug.Log($"{serviceType} Initialized: {isInitialized}");
+            // Debug.Log($"{serviceType} Initialized: {isInitialized}");
         }
     } 
 }
