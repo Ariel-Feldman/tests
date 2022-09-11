@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-// using Newtonsoft;
 
-namespace Parana
+namespace Utilities.Serialization
 {
     public class UnityJsonSerializer : ISerializationOption
     {

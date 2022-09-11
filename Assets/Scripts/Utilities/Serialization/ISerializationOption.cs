@@ -1,4 +1,4 @@
-namespace Parana
+namespace Utilities.Serialization
 {
     public interface ISerializationOption
     {
