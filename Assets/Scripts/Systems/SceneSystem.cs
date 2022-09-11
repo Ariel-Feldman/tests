@@ -13,13 +13,12 @@ public class SceneSystem : Singleton<SceneSystem>
     
     public async Task MoveToScene(SceneName sceneName, Action onSceneLoaded = null)
     {
-        SetLoadingBarPercentage(0);
-        
+        SetLoadingBarPercentage(1);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)sceneName);
         asyncOperation.allowSceneActivation = false;
         while (!asyncOperation.isDone || asyncOperation.progress < 0.9f)
         {
-            SetLoadingBarPercentage(asyncOperation.progress);
+            SetLoadingBarPercentage(asyncOperation.progress + 0.1f);
             await Task.Delay(10);
         }
         

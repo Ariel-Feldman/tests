@@ -2,8 +2,13 @@ using UnityEngine;
 
 public static class LocalConfigs 
 {
+    public static void SetEmbeddedConfigs()
+    {
+        SetQualitySettings();
+    }
 
-    public static void SetQualitySettings()
+
+    private static void SetQualitySettings()
     {
 
         Application.targetFrameRate = 60;

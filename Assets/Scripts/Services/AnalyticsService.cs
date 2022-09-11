@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using UnityEngine.Events;
 
 namespace Services
 {
-    public static class PushNotificationService
+
+    public static class AnalyticsService
     {
-        public static async Task Init(UnityAction<Type, bool> onServiceAdded)
+        public static async Task Init(Action<Type, bool> onServiceAdded)
         {
             DebugSystem.Log("Starting PN Service");
             await Task.Delay(500);
