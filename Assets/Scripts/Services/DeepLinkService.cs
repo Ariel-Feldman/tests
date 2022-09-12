@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Services
@@ -8,7 +9,6 @@ namespace Services
     {
         public static Task Init(UnityAction<Type, bool> onServiceAdded)
         {
-            DebugSystem.Log("Starting DL Service");
             onServiceAdded.Invoke(typeof(DeepLinkService), true);
             return Task.CompletedTask;
         }

@@ -1,5 +1,6 @@
 using Services;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Systems
 {
@@ -7,33 +8,35 @@ namespace Systems
     {
         private void Awake()
         {
-            DebugSystem.Log("Boot System Awake");
+            Debug.Log("Boot System Awake");
             Boot();
         }
 
         private async void Boot()
         {
-            DebugSystem.Log("Loading configs");
+            Debug.Log("Loading configs");
             LocalConfigs.SetEmbeddedConfigs();
 
-            DebugSystem.Log("Checkin network connection");
+            Debug.Log("Checking network connection");
             if (!await NetworkService.CheckGlobalConnection())
             {
+                Debug.Log("Network Check Fail");
                 ShowNoConnectionErrorPopup();
                 return;
             }
             
             
-            DebugSystem.Log("Initialize Service");
+            Debug.Log("Initialize Services");
             if (!await ServiceResolver.InitServices())
             {
                 ShowServiceDownErrorPopup();
+                return;
             }
             
-            await SceneSystem.Instance.MoveToScene(SceneName.Game);
-            DebugSystem.Log("Boot Ended");
+            Debug.Log("Boot Ended");
+            await SceneSystem.Instance.MoveToScene(SceneName.Main);
         }
-
+        
         private void ShowNoConnectionErrorPopup()
         {
             var errorPopup = new PopupBase();

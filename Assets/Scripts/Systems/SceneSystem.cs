@@ -8,24 +8,43 @@ using Utilities;
 
 public class SceneSystem : Singleton<SceneSystem>
 {
+    [SerializeField] private GameObject _loadingBar;
     [SerializeField] private Image _loadingBarFillImage;
     [SerializeField] private TMP_Text _loadingBarPercentage;
     
     public async Task MoveToScene(SceneName sceneName, Action onSceneLoaded = null)
     {
+        var activeScene = SceneManager.GetActiveScene();
+        
+        _loadingBar.SetActive(true);
         SetLoadingBarPercentage(1);
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)sceneName);
+        
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName.ToString(), LoadSceneMode.Additive);
         asyncOperation.allowSceneActivation = false;
-        while (!asyncOperation.isDone || asyncOperation.progress < 0.9f)
+        
+        while (asyncOperation.progress < 0.9f)
         {
+            Debug.Log($"Loading {sceneName} Scene...");
             SetLoadingBarPercentage(asyncOperation.progress + 0.1f);
             await Task.Delay(10);
         }
         
-        onSceneLoaded?.Invoke();
+        _loadingBar.SetActive(false);
         asyncOperation.allowSceneActivation = true;
+        Debug.Log($"Scene {sceneName} Loaded");
+        
+
+        while (!asyncOperation.isDone)
+        {
+            
+            await Task.Delay(10);
+        }
+        
+        SceneManager.UnloadSceneAsync(activeScene);
+        Debug.Log($"Scene {activeScene} Unloaded");
+        onSceneLoaded?.Invoke();
     }
-    
+
     private void SetLoadingBarPercentage(float percentage)
     {
         _loadingBarFillImage.fillAmount = percentage;

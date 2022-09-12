@@ -7,7 +7,7 @@ namespace Systems
     {
         public static void Test()
         {
-            Debug.Log("Nav System is working");
+            UnityEngine.Debug.Log("Nav System is working");
         }
     }
 }

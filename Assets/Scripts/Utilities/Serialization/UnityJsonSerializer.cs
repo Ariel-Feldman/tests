@@ -16,7 +16,7 @@ namespace Utilities.Serialization
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Could not parse Json response {text}. {ex.Message}");
+                UnityEngine.Debug.LogError($"Could not parse Json response {text}. {ex.Message}");
                 return default;
             }
         }
