@@ -21,7 +21,7 @@ namespace Services
                 response.EnsureSuccessStatusCode();
                 return true;
             }
-            catch (HttpRequestException e)
+            catch 
             {
                 return false;
             }
