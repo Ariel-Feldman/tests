@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class TweenTransition : MonoBehaviour
@@ -8,7 +9,7 @@ public class TweenTransition : MonoBehaviour
     {
         if (_transitionType == TransitionType.TransitionIn)
         {
-            
+            transform.DOScale(transform.localScale / 2, 2f).SetLoops(-1, LoopType.Yoyo);
         }
     }
 }
