@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Parana
+namespace MVCF
 {
     public static class FeatureResolver
     {

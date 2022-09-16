@@ -34,7 +34,12 @@ namespace Systems
             }
             
             Debug.Log("Boot Ended");
-            await SceneSystem.Instance.MoveToScene(SceneName.Main);
+            await SceneSystem.Instance.MoveToScene(SceneName.Main, ShowLobby);
+        }
+        
+        private void ShowLobby()
+        {
+            NavSystem.MoveTo(NavState.Lobby);
         }
         
         private void ShowNoConnectionErrorPopup()

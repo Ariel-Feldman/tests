@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Parana
+namespace MVCF
 {
     public class BaseView : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 namespace MVCF
 {
-    public class BaseFeature
+    public class LobbyController
     {
         
     }
