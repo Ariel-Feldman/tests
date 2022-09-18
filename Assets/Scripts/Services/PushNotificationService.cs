@@ -1,9 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using UnityEngine;
 using UnityEngine.Events;
 
-namespace Services
+namespace ArielServices
 {
     public static class PushNotificationService
     {

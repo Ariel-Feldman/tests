@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Services
+namespace ArielServices
 {
     public static class NetworkService
     {

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Systems.Animation
+namespace ArielSystems.Animations
 {
     public class TweenEvents : MonoBehaviour
     {

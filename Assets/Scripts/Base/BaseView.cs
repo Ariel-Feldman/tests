@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Base
+namespace ArielBase
 {
     public class BaseView : MonoBehaviour
     {

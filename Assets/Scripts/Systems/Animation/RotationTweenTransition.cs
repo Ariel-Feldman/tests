@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Systems.Animation
+namespace ArielSystems.Animations
 {
     public class RotationTweenTransition : TweenTransition
     {

@@ -1,17 +1,19 @@
 using System.Collections.Generic;
-using Systems;
 using UnityEngine;
 using Utilities;
 
-public class PopupSystemView : Singleton<PopupSystemView>
+namespace ArielSystems
 {
-    [SerializeField] private PopupBaseView _popupBaseView;
-    
-    private List<PopupBase> _livePopups;
-    
-    public void AddPopupToQueue(PopupBase popupBase)
+    public class PopupSystemView : Singleton<PopupSystemView>
     {
-        _popupBaseView.SetBasicContext(popupBase);
-        var instantiatedPopup = Instantiate(_popupBaseView, transform);
+        [SerializeField] private PopupBaseView _popupBaseView;
+
+        private List<PopupBase> _livePopups;
+
+        public void AddPopupToQueue(PopupBase popupBase)
+        {
+            _popupBaseView.SetBasicContext(popupBase);
+            var instantiatedPopup = Instantiate(_popupBaseView, transform);
+        }
     }
 }

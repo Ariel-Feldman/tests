@@ -1,14 +1,13 @@
-
 using UnityEngine;
 
-namespace Systems
+namespace ArielSystems
 {
     public class PopupSystem
     {
         public static void ShowErrorPopUp(PopupBase errorPopup)
         {
             Debug.Log("Error popup to raise here");
-            PopupSystemView.Instance.AddPopupToQueue(errorPopup);
+            // PopupSystemView.Instance.AddPopupToQueue(errorPopup);
         }
 
         public static void ShowPopup(PopupBase popup)

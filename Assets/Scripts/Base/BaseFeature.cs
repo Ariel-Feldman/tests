@@ -1,4 +1,4 @@
-namespace Base
+namespace ArielBase
 {
     public class BaseFeature
     {

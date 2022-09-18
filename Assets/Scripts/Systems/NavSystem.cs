@@ -1,8 +1,8 @@
 using Utilities;
-using Base;
-using Concrete;
+using ArielBase;
+using ArielConcrete;
 
-namespace Systems
+namespace ArielSystems
 {
     public class NavSystem : Singleton<NavSystem>
     {

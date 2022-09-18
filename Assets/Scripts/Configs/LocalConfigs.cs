@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public static class LocalConfigs 
+namespace ArielConfig
 {
-    public static void SetEmbeddedConfigs()
+    public static class LocalConfigs
     {
-        SetQualitySettings();
-    }
+        public static void SetEmbeddedConfigs()
+        {
+            SetQualitySettings();
+        }
 
 
-    private static void SetQualitySettings()
-    {
+        private static void SetQualitySettings()
+        {
 
-        Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 0;
+        }
     }
 }

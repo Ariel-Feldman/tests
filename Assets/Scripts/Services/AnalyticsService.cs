@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using UnityEngine;
 
-namespace Services
+namespace ArielServices
 {
 
     public static class AnalyticsService

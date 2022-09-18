@@ -1,13 +1,14 @@
-using Base;
+using ArielBase;
 using Debug = UnityEngine.Debug;
 
-namespace Concrete
+namespace ArielConcrete
 {
     public class LobbyController : BaseController
     {
         public void Init()
         {
             Debug.Log("Lobby Controller Init");
+            // Pop
         }
     }
 }

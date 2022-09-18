@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Systems
+namespace ArielSystems
 {
     public class SceneSystem : Singleton<SceneSystem>
     {

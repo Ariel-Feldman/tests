@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class RemoteConfigs
+namespace ArielConfig
 {
+    public class RemoteConfigs
+    {
 
+    }
 }

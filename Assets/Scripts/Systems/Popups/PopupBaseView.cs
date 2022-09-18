@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Systems
+namespace ArielSystems
 {
     public class PopupBaseView : MonoBehaviour
     {
