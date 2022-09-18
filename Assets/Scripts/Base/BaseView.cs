@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MVCF
+namespace Base
 {
     public class BaseView : MonoBehaviour
     {

@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 204394267}
   - component: {fileID: 204394266}
   - component: {fileID: 204394268}
+  - component: {fileID: 204394269}
+  - component: {fileID: 204394270}
   m_Layer: 5
   m_Name: HeartTween
   m_TagString: Untagged
@@ -151,7 +153,7 @@ RectTransform:
   m_GameObject: {fileID: 204394264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 790576363}
@@ -212,7 +214,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a3e07fad3a8ac4c8d3a031388f5dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transitionType: 0
+  _tweenTransitionIn: {fileID: 204394269}
+  _tweenTransitionIdle: {fileID: 204394270}
+  _tweenTransitionOut: {fileID: 0}
+--- !u!114 &204394269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204394264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4f32b1b31544ae947904d556312767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 204394265}
+  _duration: 5
+  _ease: 13
+  _scaleFactor: 4
+--- !u!114 &204394270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204394264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906bbdbb2a7e468db090af549e78ec44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 204394265}
+  _duration: 3
+  _ease: 26
+  _endTarget: {fileID: 1389433368}
+  _snapping: 0
 --- !u!1 &349447320
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,22 +1,16 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
-public class TweenTransition : MonoBehaviour
+namespace Systems.Animation
 {
-    [SerializeField] private TransitionType _transitionType;
-    
-    private void Awake()
+    public abstract class TweenTransition : MonoBehaviour
     {
-        if (_transitionType == TransitionType.TransitionIn)
-        {
-            transform.DOScale(transform.localScale / 2, 2f).SetLoops(-1, LoopType.Yoyo);
-        }
-    }
-}
+        [SerializeField] protected Transform _transform;
+        [SerializeField] protected float _duration;
+        [SerializeField] protected Ease _ease;
 
-public enum TransitionType
-{
-    TransitionIn,
-    Idle,
-    TransitionOut  
+        public Action OnTransitionEnded;
+        public abstract void StartTransition();
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ public class AnimatorEvents : MonoBehaviour
     {
         foreach (var state in _states)
             _statesHash.Add(Animator.StringToHash(state));
-        
         
         AnimatorStateMachine.OnAnimatorStateEnter += OnStateEnter;
         AnimatorStateMachine.OnAnimatorStateExit += OnStateExit;
@@ -54,32 +54,32 @@ public class AnimatorEvents : MonoBehaviour
 
     public void OnTransitionInStarted()
     {
-        Debug.Log("Transition In Started");
+        // Debug.Log("Transition In Started");
     }
     
     public void OnTransitionInEnded()
     {
-        Debug.Log("Transition In Ended");
+        // Debug.Log("Transition In Ended");
     }
     
     public void OnIdleStarted()
     {
-        Debug.Log("Transition Idle Started");
+        // Debug.Log("Transition Idle Started");
     }
     
     public void OnIdleEnded()
     {
-        Debug.Log("Transition In Ended");
+        // Debug.Log("Transition In Ended");
     }
     
     public void OnTransitionOutStarted()
     {
-        Debug.Log("Transition Out Started");
+        // Debug.Log("Transition Out Started");
     }
     
     public void OnTransitionOutEnded()
     {
-        Debug.Log("Transition Out Ended");
+        // Debug.Log("Transition Out Ended");
         _animator.enabled = false;
     }
 }

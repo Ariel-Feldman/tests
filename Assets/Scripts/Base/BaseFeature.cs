@@ -1,4 +1,4 @@
-namespace MVCF
+namespace Base
 {
     public class BaseFeature
     {

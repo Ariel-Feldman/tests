@@ -1,5 +1,6 @@
-using MVCF;
 using Utilities;
+using Base;
+using Concrete;
 
 namespace Systems
 {
@@ -10,11 +11,11 @@ namespace Systems
         public static void MoveTo(NavState state)
         {
             if (state == _currentState) return;
-
             switch (state)
             {
                 case NavState.Lobby:
-                    // var lobbyController = FeatureResolver.GetFeature<LobbyController>();
+                    var lobbyController = Injector.GetController<LobbyController>();
+                    lobbyController.Init();
                     break;
                 case NavState.Store:
                     break;
@@ -23,14 +24,13 @@ namespace Systems
                 case NavState.CRM:
                     break;
             }
-            
-            UnityEngine.Debug.Log("Nav System is working");
         }
     }
 
 
     public enum NavState
     {
+        Boot,
         Lobby,
         Store,
         Account,
