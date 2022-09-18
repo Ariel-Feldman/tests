@@ -1,7 +1,7 @@
-using ArielBase;
+using Ariel.Base;
 using Debug = UnityEngine.Debug;
 
-namespace ArielConcrete
+namespace Ariel.MVCF
 {
     public class LobbyController : BaseController
     {

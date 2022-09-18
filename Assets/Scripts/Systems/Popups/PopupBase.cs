@@ -1,6 +1,6 @@
 using UnityEngine.Events;
 
-namespace ArielSystems
+namespace Ariel.Systems
 {
     public class PopupBase
     {

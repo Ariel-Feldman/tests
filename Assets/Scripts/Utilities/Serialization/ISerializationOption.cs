@@ -1,4 +1,4 @@
-namespace Utilities.Serialization
+namespace Ariel.Utilities.Serialization
 {
     public interface ISerializationOption
     {

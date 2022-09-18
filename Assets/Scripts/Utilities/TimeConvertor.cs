@@ -1,6 +1,6 @@
 using System;
 
-namespace Parana.Utilities
+namespace Ariel.Utilities
 {
     public static class TimeConvertor
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ArielConfig
+namespace Ariel.Config
 {
     public static class LocalConfigs
     {

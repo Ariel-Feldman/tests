@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace ArielSystems.Animations
+namespace Ariel.Systems.Animations
 {
     public class ScaleTweenTransition : TweenTransition
     {

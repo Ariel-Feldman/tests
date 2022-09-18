@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Utilities;
+using Ariel.Utilities;
 
-namespace ArielSystems
+namespace Ariel.Systems
 {
     public class PopupSystemView : Singleton<PopupSystemView>
     {

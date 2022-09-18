@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace ArielServices
+namespace Ariel.Services
 {
 
     public static class AnalyticsService

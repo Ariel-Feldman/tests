@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace ArielServices
+namespace Ariel.Services
 {
     public static class ServiceResolver
     {

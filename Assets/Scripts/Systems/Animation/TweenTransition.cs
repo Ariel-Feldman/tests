@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace ArielSystems.Animations
+namespace Ariel.Systems.Animations
 {
     public abstract class TweenTransition : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utilities.Serialization
+namespace Ariel.Utilities.Serialization
 {
     public class UnityJsonSerializer : ISerializationOption
     {

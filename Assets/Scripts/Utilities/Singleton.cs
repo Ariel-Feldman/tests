@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utilities
+namespace Ariel.Utilities
 {
     public class Singleton<T> : MonoBehaviour where T : Component
     {

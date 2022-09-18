@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ArielSytems
+namespace Ariel.Sytems
 {
     public static class CommandSystem
     {

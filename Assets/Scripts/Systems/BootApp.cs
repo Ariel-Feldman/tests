@@ -1,8 +1,8 @@
-using ArielConfig;
-using ArielServices;
+using Ariel.Config;
+using Ariel.Services;
 using UnityEngine;
 
-namespace ArielSystems
+namespace Ariel.Systems
 {
     public class BootApp : MonoBehaviour
     {

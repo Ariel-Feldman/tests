@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ArielBase
+namespace Ariel.Base
 {
     public static class Injector
     {

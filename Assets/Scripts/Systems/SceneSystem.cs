@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Utilities;
+using Ariel.Utilities;
 
-namespace ArielSystems
+namespace Ariel.Systems
 {
     public class SceneSystem : Singleton<SceneSystem>
     {

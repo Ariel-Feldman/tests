@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ArielEditor
+namespace Ariel.Editor
 {
 
     public static class PlayFromTheFirstScene

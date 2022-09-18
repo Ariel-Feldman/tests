@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ArielSystems.Animations
+namespace Ariel.Systems.Animations
 {
     public class AnimatorStateMachine : StateMachineBehaviour
     {

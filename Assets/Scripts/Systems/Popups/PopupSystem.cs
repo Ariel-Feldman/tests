@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ArielSystems
+namespace Ariel.Systems
 {
     public class PopupSystem
     {
