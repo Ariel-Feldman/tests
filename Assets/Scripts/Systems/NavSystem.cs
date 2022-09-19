@@ -1,5 +1,4 @@
 using Ariel.Utilities;
-using Ariel.Base;
 using Ariel.MVCF;
 
 namespace Ariel.Systems
@@ -14,7 +13,7 @@ namespace Ariel.Systems
             switch (state)
             {
                 case NavState.Lobby:
-                    var lobbyController = Injector.GetController<LobbyController>();
+                    var lobbyController = Resolver.GetController<LobbyController>();
                     lobbyController.Init();
                     break;
                 case NavState.Store:

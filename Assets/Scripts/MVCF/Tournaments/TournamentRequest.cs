@@ -1,6 +1,6 @@
 namespace Ariel.MVCF
 {
-    public class BaseFeature
+    public class TournamentRequest
     {
         
     }

@@ -18,7 +18,7 @@ namespace Ariel.Systems
             LocalConfigs.SetEmbeddedConfigs();
 
             Debug.Log("Checking network connection");
-            if (!await NetworkService.CheckGlobalConnection())
+            if (!await HttpService.CheckGlobalConnection())
             {
                 Debug.Log("Network Check Fail");
                 ShowNoConnectionErrorPopup();

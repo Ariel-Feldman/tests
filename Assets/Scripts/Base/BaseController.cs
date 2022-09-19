@@ -1,4 +1,4 @@
-namespace Ariel.Base
+namespace Ariel.MVCF
 {
     public class BaseController
     {
