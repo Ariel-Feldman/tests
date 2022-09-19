@@ -867,3 +867,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b038557adb86641b4eb964e55c4c86, type: 3}
+--- !u!1 &8298608417996553559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8298608416761039280, guid: a6b038557adb86641b4eb964e55c4c86, type: 3}
+  m_PrefabInstance: {fileID: 8298608417996553558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8298608417996553560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298608417996553559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bbe1c33924b554aa662735e47f2d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tournamentsContainer: {fileID: 0}
+  _tournamentView: {fileID: 0}
