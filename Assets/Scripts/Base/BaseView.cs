@@ -1,9 +1,12 @@
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Ariel.MVCF
 {
-    public class BaseView : MonoBehaviour
+    public class BaseView
     {
-        
+        public async Task TransitionOut()
+        {
+            await Task.Delay(100);
+        }
     }
 }

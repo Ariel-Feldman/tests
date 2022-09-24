@@ -2,22 +2,29 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Ariel.Utilities;
+using Ariel.Utilities.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Ariel.Services
 {
-    public static class HttpService
+    public class HttpService 
     {
-        private static readonly HttpClient _client = new();
+        private static HttpClient _client;
         private static ISerializationOption _serializationOption;
 
-        public static void SetSerializationOption(ISerializationOption serializationOption)
+        public void InitClient()
+        {
+            _client = new HttpClient();
+            _serializationOption = new UnityJsonSerializer();
+        }
+        
+        public void SetSerializer(ISerializationOption serializationOption)
         {
             _serializationOption = serializationOption;
         }
 
-        public static async Task<bool> CheckGlobalConnection()
+        public async Task<bool> CheckGlobalConnection()
         {
             if (Application.internetReachability == NetworkReachability.NotReachable)
                 return false;
@@ -34,7 +41,7 @@ namespace Ariel.Services
             }
         }
         
-        public static async Task<T> Get<T>(string url)
+        public async Task<T> Get<T>(string url)
         {
             try
             {

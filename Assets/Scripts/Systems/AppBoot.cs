@@ -1,48 +1,38 @@
 using Ariel.Config;
+using Ariel.MVCF;
 using Ariel.Services;
-using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public class BootApp : MonoBehaviour
+    public static class AppBoot 
     {
-        private void Awake()
+        public static async void Boot()
         {
-            Debug.Log("Boot System Awake");
-            Boot();
-        }
-
-        private async void Boot()
-        {
-            Debug.Log("Loading configs");
             LocalConfigs.SetEmbeddedConfigs();
-
-            Debug.Log("Checking network connection");
-            if (!await HttpService.CheckGlobalConnection())
+            
+            if (!await Injector.GetInstance<HttpService>().CheckGlobalConnection())
             {
-                Debug.Log("Network Check Fail");
                 ShowNoConnectionErrorPopup();
                 return;
             }
-            
-            
-            Debug.Log("Initialize Services");
-            if (!await ServiceResolver.InitServices())
+
+            if (!await ServicesInitializer.InitServices())
             {
                 ShowServiceDownErrorPopup();
                 return;
             }
-            
-            Debug.Log("Boot Ended");
-            await SceneSystem.Instance.MoveToScene(SceneName.Main, ShowLobby);
+
+            // if (!await AddressableSystem.InitSystem())
+            // {
+            //     ShowServiceDownErrorPopup();
+            //     return;
+            // }
+
+            await SceneSystem.Instance.MoveToScene(SceneType.Main);
+            await NavSystem.MoveTo(NavState.Lobby);
         }
         
-        private void ShowLobby()
-        {
-            NavSystem.MoveTo(NavState.Lobby);
-        }
-        
-        private void ShowNoConnectionErrorPopup()
+        private static void ShowNoConnectionErrorPopup()
         {
             var errorPopup = new PopupBase();
             errorPopup.Header = "O No!";
@@ -51,7 +41,7 @@ namespace Ariel.Systems
             PopupSystem.ShowErrorPopUp(errorPopup);
         }
         
-        private void ShowServiceDownErrorPopup()
+        private static void ShowServiceDownErrorPopup()
         {
             var errorPopup = new PopupBase();
             errorPopup.Header = "Services are down!";

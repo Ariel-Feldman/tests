@@ -4,21 +4,21 @@ using UnityEngine;
 
 namespace Ariel.MVCF
 {
-    public class TournamentsController : BaseController
+    public class TournamentsController
     {
         public async Task ShowTournaments()
         {
             Debug.Log("Showing Tournaments");
             
             UiBlockerSystem.Instance.ShowFullScreenLoadingCircle();
-            var tournamentsFeature = Resolver.GetFeature<TournamentsFeature>();
+            var tournamentsFeature = Injector.GetInstance<TournamentsFeature>();
             var tournaments = await tournamentsFeature.LoadTournaments();
             UiBlockerSystem.Instance.HideFullScreenLoadingCircle();
             
             foreach (var tournament in tournaments)
             {
-                TournamentsController tournamentsController = Resolver.GetController<TournamentsController>();
-                var TournamentView = ViewResolver.GetView<TournamentView>();
+                TournamentsController tournamentsController = Injector.GetInstance<TournamentsController>();
+                // var TournamentView = ViewResolver.GetView<TournamentView>();
             }
         }
     }

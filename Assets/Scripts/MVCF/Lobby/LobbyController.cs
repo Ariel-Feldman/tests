@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
-using Ariel.Systems;
-using Debug = UnityEngine.Debug;
+using UnityEngine;
 
 namespace Ariel.MVCF
 {
@@ -8,15 +7,13 @@ namespace Ariel.MVCF
     {
         private LobbyView _view;
         private TournamentsController _tournamentsController;
-        public async void Init()
+        
+        public async void BindView()
         {
-            // Debug.Log("Lobby Controller View Bind");
-            // _view = ViewResolver.GetView<LobbyView>();
-            //
-            Debug.Log("qqq awaiting frames");
-            await MonoSystem.Instance.AwaitFrames(220);
-            Debug.Log("qqq waited 220 frames");
-            
+            Debug.Log("Lobby Controller View Bind");
+            _view = ViewCatalog.GetView<LobbyView>();
+            await Task.Delay(10000);
+
             // _tournamentsController = Resolver.GetController<TournamentsController>();
             // await _tournamentsController.ShowTournaments();
         }

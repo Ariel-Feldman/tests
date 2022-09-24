@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Ariel.Utilities;
 using Ariel.MVCF;
 
@@ -6,15 +7,18 @@ namespace Ariel.Systems
     public class NavSystem : Singleton<NavSystem>
     {
         private static NavState _currentState;
+        private static BaseController _currentController;
         
-        public static void MoveTo(NavState state)
+        public static async Task MoveTo(NavState state)
         {
             if (state == _currentState) return;
+
+            await TransitionOut();
+            
             switch (state)
             {
                 case NavState.Lobby:
-                    var lobbyController = Resolver.GetController<LobbyController>();
-                    lobbyController.Init();
+                    _currentController = Injector.GetInstance<LobbyController>();
                     break;
                 case NavState.Store:
                     break;
@@ -23,6 +27,11 @@ namespace Ariel.Systems
                 case NavState.CRM:
                     break;
             }
+        }
+
+        private static async Task TransitionOut()
+        {
+            await _currentController.TransitionOut();
         }
     }
 
