@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
+using UnityEngine.AddressableAssets.ResourceLocators;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Ariel.Systems
 {
@@ -18,10 +20,10 @@ namespace Ariel.Systems
         //     return tcs.Task.Result;
         // }
         
-        // public static async Task<bool> InitSystem()
-        // {
-        //     var tcs = await Addressables.InitializeAsync().Task;
-        //     return tcs != null;
-        // }
+        public static async Task<bool> InitSystem()
+        {
+            var tcs = await Addressables.InitializeAsync().Task;
+            return tcs != null;
+        }
     }
 }

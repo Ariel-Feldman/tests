@@ -2,7 +2,7 @@
 namespace Ariel.Services
 {
 
-    public class AnalyticsService
+    public class AnalyticsService : BaseService
     {
 
     }

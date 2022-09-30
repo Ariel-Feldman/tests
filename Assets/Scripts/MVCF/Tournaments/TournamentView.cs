@@ -1,8 +1,8 @@
-using UnityEngine;
+using Ariel.Systems;
 
 namespace Ariel.MVCF
 {
-    public class TournamentView : MonoBehaviour
+    public class TournamentView : BaseView
     {
         
     }

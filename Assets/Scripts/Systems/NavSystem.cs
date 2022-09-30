@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Ariel.Utilities;
 using Ariel.MVCF;
+using UnityEngine;
 
 namespace Ariel.Systems
 {
@@ -12,7 +13,8 @@ namespace Ariel.Systems
         public static async Task MoveTo(NavState state)
         {
             if (state == _currentState) return;
-
+            _currentState = state;
+            
             await TransitionOut();
             
             switch (state)
@@ -31,11 +33,13 @@ namespace Ariel.Systems
 
         private static async Task TransitionOut()
         {
-            await _currentController.TransitionOut();
+            if (_currentController == null) return;
+            Debug.Log("Awaiting For Transition Out");
+            await Task.Delay(1000);
+            // await _currentController.TransitionOut();
         }
     }
-
-
+    
     public enum NavState
     {
         Boot,

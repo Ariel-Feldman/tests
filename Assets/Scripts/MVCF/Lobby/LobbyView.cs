@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Ariel.Systems;
 using UnityEngine;
 
 namespace Ariel.MVCF
@@ -6,7 +7,6 @@ namespace Ariel.MVCF
     public class LobbyView : BaseView
     {
         [SerializeField] private Transform _tournamentsContainer;
-        [SerializeField] private TournamentView _tournamentView;
         
         public void ShowTournaments(List<TournamentModel> tournamentModels)
         {

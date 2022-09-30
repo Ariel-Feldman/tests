@@ -12,7 +12,6 @@ namespace Ariel.Config
 
         private static void SetQualitySettings()
         {
-
             Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 0;
         }

@@ -167,3 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31240a50a5976a4d943e9ea88779cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bootSceneAssetsReferences:
+    m_AssetGUID: 6f98f47820139459fa2da15291af5289
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

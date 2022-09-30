@@ -14,5 +14,7 @@ namespace Ariel.MVCF
 
             return _objects[typeof(T)] as T;
         }
+
+        public static void ClearInstances() => _objects = new Dictionary<Type, object>();
     }
 }

@@ -1,7 +1,7 @@
 
 namespace Ariel.Services
 {
-    public class PushNotificationService 
+    public class PushNotificationService : BaseService
     {
 
     }

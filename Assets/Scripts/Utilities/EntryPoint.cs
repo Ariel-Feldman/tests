@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Ariel.Systems;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -6,9 +7,18 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class EntryPoint : MonoBehaviour
 {
-    void Start()
+    [SerializeField] private AssetReference _bootSceneAssetsReferences;
+
+    private async Task Start()
     {
-        Addressables.LoadSceneAsync("Boot").Completed += OnBootSceneLoaded;
+
+        if (!await AddressableSystem.InitSystem())
+        {
+            Debug.Log("Fail To Activate Addressable System, Quit");
+            return;
+        }
+        
+        Addressables.LoadSceneAsync(_bootSceneAssetsReferences).Completed += OnBootSceneLoaded;
     }
 
     private void OnBootSceneLoaded(AsyncOperationHandle<SceneInstance> handle)

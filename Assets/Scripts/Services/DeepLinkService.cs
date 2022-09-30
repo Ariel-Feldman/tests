@@ -1,6 +1,6 @@
 namespace Ariel.Services
 {
-    public class DeepLinkService
+    public class DeepLinkService : BaseService
     {
 
     }

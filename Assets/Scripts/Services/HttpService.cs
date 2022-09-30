@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 namespace Ariel.Services
 {
-    public class HttpService 
+    public class HttpService : BaseService
     {
         private static HttpClient _client;
         private static ISerializationOption _serializationOption;

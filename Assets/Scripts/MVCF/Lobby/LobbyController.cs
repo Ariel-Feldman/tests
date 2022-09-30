@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Ariel.Systems;
 using UnityEngine;
 
 namespace Ariel.MVCF
@@ -11,7 +12,7 @@ namespace Ariel.MVCF
         public async void BindView()
         {
             Debug.Log("Lobby Controller View Bind");
-            _view = ViewCatalog.GetView<LobbyView>();
+            _view = ViewSystem.GetView<LobbyView>();
             await Task.Delay(10000);
 
             // _tournamentsController = Resolver.GetController<TournamentsController>();

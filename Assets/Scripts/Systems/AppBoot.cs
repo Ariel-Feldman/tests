@@ -9,27 +9,26 @@ namespace Ariel.Systems
         public static async void Boot()
         {
             LocalConfigs.SetEmbeddedConfigs();
+            Injector.ClearInstances();
+            ViewSystem.Init();
             
-            if (!await Injector.GetInstance<HttpService>().CheckGlobalConnection())
-            {
-                ShowNoConnectionErrorPopup();
-                return;
-            }
-
-            if (!await ServicesInitializer.InitServices())
-            {
-                ShowServiceDownErrorPopup();
-                return;
-            }
-
-            // if (!await AddressableSystem.InitSystem())
+            // if (!await ServicesInitializer.InitServices())
             // {
             //     ShowServiceDownErrorPopup();
             //     return;
             // }
-
+            
+            // if (!await Injector.GetInstance<HttpService>().CheckGlobalConnection())
+            // {
+            //     ShowNoConnectionErrorPopup();
+            //     return;
+            // }
+            
             await SceneSystem.Instance.MoveToScene(SceneType.Main);
-            await NavSystem.MoveTo(NavState.Lobby);
+            
+            var DesiredNavStateOnBoot = NavState.Lobby; // Redirection system kick here?
+            
+            await NavSystem.MoveTo(DesiredNavStateOnBoot);
         }
         
         private static void ShowNoConnectionErrorPopup()
