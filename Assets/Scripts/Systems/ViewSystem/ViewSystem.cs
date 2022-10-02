@@ -13,7 +13,7 @@ namespace Ariel.Systems
             _viewMap = new ViewMap[Enum.GetNames(typeof(SceneType)).Length];
         }
 
-        public static void ResolveSceneViews()
+        public static void MapSceneViews()
         {
             if (_viewMap[_currentSceneIndex] != null)
             {
@@ -39,7 +39,7 @@ namespace Ariel.Systems
             view = _viewMap[_currentSceneIndex].GetView(typeof(T));
             
             if (view == null)
-                Debug.Log($"Fail to get view type: {typeof(T)}");
+                Debug.LogWarning($"Failed to get view type: {typeof(T)}");
 
             return view as T;
         }

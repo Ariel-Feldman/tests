@@ -9,7 +9,8 @@ namespace Ariel.Systems.Animations
         
         public override void StartTransition()
         {
-            _transform.DOScale(_transform.localScale * _scaleFactor, _duration)
+            Debug.Log("Start Tween");
+            _tween = _transform.DOScale(_transform.localScale * _scaleFactor, _duration)
                 .SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
         }
     }

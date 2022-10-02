@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace Ariel.MVCF
 {
-    public class TournamentsController
+    public class TournamentsController : BaseController
     {
+        private TournamentView _view;
+
+        public override void BindViews()
+        {
+            _view = BindView<TournamentView>();
+        }
+        
         public async Task ShowTournaments()
         {
             Debug.Log("Showing Tournaments");

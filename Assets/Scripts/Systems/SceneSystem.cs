@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ariel.Utilities;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
@@ -16,43 +17,53 @@ namespace Ariel.Systems
         [SerializeField] private GameObject _loadingBar;
         [SerializeField] private Image _loadingBarFillImage;
         [SerializeField] private TMP_Text _loadingBarPercentage;
-
-        [SerializeField] private GameObject _bootSceneCamera;
+        [SerializeField] private AssetReference[] _sceneAssetReferences;
         
-        [SerializeField] private AssetReference[] _sceneAssetsReferences;
         private SceneInstance _lastHandle;
         
-        public async Task MoveToScene(SceneType sceneType)
+        public async Task LoadScene(SceneType sceneType)
         {
-            var loadSceneOperation = Addressables.LoadSceneAsync(_sceneAssetsReferences[(int)sceneType], LoadSceneMode.Additive, false);
-
-            _loadingBar.SetActive(true);
-            SetLoadingBarPercentage(0);
+            SetLoadingUiVisible(true);
             
+            var loadSceneOperation = Addressables.LoadSceneAsync(_sceneAssetReferences[(int)sceneType], LoadSceneMode.Additive, false);
+            await LoadingScene(loadSceneOperation);
+            await SwappingActiveScene(loadSceneOperation);
+
+            CurrentScene = sceneType;
+            ViewSystem.MapSceneViews();
+            SetLoadingUiVisible(false);
+        }
+
+        private void SetLoadingUiVisible(bool isVisible)
+        {
+            _loadingBar.SetActive(isVisible);
+            SetLoadingBarPercentage(0);
+        }
+
+        private async Task LoadingScene(AsyncOperationHandle<SceneInstance> loadSceneOperation)
+        {
             while (!loadSceneOperation.IsDone)
             {
                 SetLoadingBarPercentage(loadSceneOperation.PercentComplete);
                 await Task.Delay(10);
             }
+        }
 
-            var activeScene = SceneManager.GetActiveScene();
+        private async Task SwappingActiveScene(AsyncOperationHandle<SceneInstance> loadSceneOperation)
+        {
             var activateOperation = loadSceneOperation.Result.ActivateAsync();
             while (!activateOperation.isDone)
             {
                 SetLoadingBarPercentage(loadSceneOperation.PercentComplete + activateOperation.progress);
                 await Task.Delay(10);
             }
-
+            
             if (CurrentScene == SceneType.Boot)
-                SceneManager.UnloadSceneAsync(activeScene);
+                SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             else
                 Addressables.UnloadSceneAsync(_lastHandle);
             
             _lastHandle = loadSceneOperation.Result;
-            CurrentScene = sceneType;
-            
-            ViewSystem.ResolveSceneViews();
-            _loadingBar.SetActive(false);
         }
 
         private void SetLoadingBarPercentage(float percentage)

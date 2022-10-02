@@ -13,9 +13,8 @@ namespace Ariel.Services
         public static async Task<bool> InitServices()
         {
             _tcs = new TaskCompletionSource<bool>();
-
-            var httpService = Injector.GetInstance<HttpService>();
-            httpService.InitClient();
+            
+            _tcs.SetResult(true);
             
             await _tcs.Task;
             

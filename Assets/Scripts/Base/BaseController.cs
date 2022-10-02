@@ -1,25 +1,22 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Ariel.Systems;
-using Debug = UnityEngine.Debug;
 
 namespace Ariel.MVCF
 {
     public class BaseController
     {
-        private List<BaseView> _activeViews;
+        private List<BaseView> _views = new();
         
-        public async Task TransitionOut()
+        public virtual void BindViews() {}
+        
+        public virtual void Init() {}
+        
+        protected T BindView<T>(bool activateViewOnBind = true) where T : BaseView
         {
-            List<Task> tasks = new List<Task>();
-            foreach (var view in _activeViews)
-            {
-                tasks.Add(Task.Run(view.TransitionOut));
-            }
-            
-            await Task.WhenAll(tasks);
-            foreach (Task t in tasks)
-                Debug.Log($"Task {t.Id} Status: {t.Status}");
+            var view = ViewSystem.GetView<T>();
+            view.gameObject.SetActive(activateViewOnBind);
+            _views.Add(view);
+            return view;
         }
     }
 }

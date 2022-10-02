@@ -589,8 +589,7 @@ MonoBehaviour:
   _loadingBar: {fileID: 853263293}
   _loadingBarFillImage: {fileID: 1040187209}
   _loadingBarPercentage: {fileID: 1542021197}
-  _bootSceneCamera: {fileID: 1120411040}
-  _sceneAssetsReferences:
+  _sceneAssetReferences:
   - m_AssetGUID: 6f98f47820139459fa2da15291af5289
     m_SubObjectName: 
     m_SubObjectType: 

@@ -12,19 +12,19 @@ namespace Ariel.Systems
             Injector.ClearInstances();
             ViewSystem.Init();
             
-            // if (!await ServicesInitializer.InitServices())
-            // {
-            //     ShowServiceDownErrorPopup();
-            //     return;
-            // }
+            if (!await HttpService.SetHttpClient())
+            {
+                ShowNoConnectionErrorPopup();
+                return;
+            }
             
-            // if (!await Injector.GetInstance<HttpService>().CheckGlobalConnection())
-            // {
-            //     ShowNoConnectionErrorPopup();
-            //     return;
-            // }
+            if (!await ServicesInitializer.InitServices())
+            {
+                ShowServiceDownErrorPopup();
+                return;
+            }
             
-            await SceneSystem.Instance.MoveToScene(SceneType.Main);
+            await SceneSystem.Instance.LoadScene(SceneType.Main);
             
             var DesiredNavStateOnBoot = NavState.Lobby; // Redirection system kick here?
             

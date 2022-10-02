@@ -8,7 +8,7 @@ namespace Ariel.Systems
         public void DeActiveView() => gameObject.SetActive(false);
         public async Task TransitionOut()
         {
-            await Task.Delay(100);
+            await Task.Delay(333);
         }
     }
 }

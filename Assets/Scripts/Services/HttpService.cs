@@ -13,19 +13,13 @@ namespace Ariel.Services
         private static HttpClient _client;
         private static ISerializationOption _serializationOption;
 
-        public void InitClient()
+        private const string TestAddress = "http://www.google.com/";
+        
+        public static async Task<bool> SetHttpClient()
         {
             _client = new HttpClient();
             _serializationOption = new UnityJsonSerializer();
-        }
-        
-        public void SetSerializer(ISerializationOption serializationOption)
-        {
-            _serializationOption = serializationOption;
-        }
-
-        public async Task<bool> CheckGlobalConnection()
-        {
+            
             if (Application.internetReachability == NetworkReachability.NotReachable)
                 return false;
             try
@@ -65,7 +59,5 @@ namespace Ariel.Services
                 return default;
             }
         }
-        
-        private const string TestAddress = "http://www.google.com/";
     }
 }
