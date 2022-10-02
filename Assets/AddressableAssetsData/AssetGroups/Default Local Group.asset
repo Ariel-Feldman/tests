@@ -29,6 +29,14 @@ MonoBehaviour:
     m_Address: Assets/Scenes/Boot.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0568ac458a8e22140a649bf81ad3da0d
+    m_Address: Assets/Content/Remote_NonStatic/Tournaments/TournamentEntry.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a6b038557adb86641b4eb964e55c4c86
+    m_Address: Assets/Content/Local_Static/Lobby/LobbyView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 748d03713fc7e144a9461810843817b9, type: 2}
   m_SchemaSet:
