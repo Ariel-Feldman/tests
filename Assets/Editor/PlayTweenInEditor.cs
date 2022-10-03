@@ -1,12 +1,28 @@
+using System.Threading.Tasks;
+using Ariel.Systems.Animations;
 using DG.DOTweenEditor;
-using DG.Tweening;
+using UnityEditor;
+using UnityEngine;
 
-public static class PlayTweenInEditor 
+[CustomEditor(typeof(TweenTransition), true )]
+public class PlayTweenInEditor : Editor
 {
-    public static void RunTween(Tween tween)
+    public override void OnInspectorGUI()
     {
-        DOTweenEditorPreview.PrepareTweenForPreview(tween);
-        DOTweenEditorPreview.Start();
+        DrawDefaultInspector();
+        if(GUILayout.Button("Play Tween"))
+        {
+            var transition = (TweenTransition)target;
+            transition.SetTween();
+            RunTween(transition);
+        }
     }
 
+    private async void RunTween(TweenTransition tweenTransition)
+    {
+        DOTweenEditorPreview.PrepareTweenForPreview(tweenTransition.Tween);
+        DOTweenEditorPreview.Start();
+        await Task.Delay((int)tweenTransition.Duration * 1000);
+        DOTweenEditorPreview.Stop(true);
+    }
 }

@@ -5,12 +5,12 @@ namespace Ariel.Systems.Animations
 {
     public class RotationTweenTransition : TweenTransition
     {
-        [SerializeField] private Transform _endTarget;
-        [SerializeField] private bool _snapping;
+        [SerializeField] private Vector3 _endVector;
+        [SerializeField] private RotateMode _rotateMode;
     
-        public override void StartTransition()
+        public override void SetTween()
         {
-            _transform.DORotateQuaternion(_endTarget.rotation, _duration)
+            Tween = _transform.DORotate(_endVector, _duration, _rotateMode)
                 .SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
         }
     }

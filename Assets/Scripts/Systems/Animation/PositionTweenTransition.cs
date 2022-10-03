@@ -8,9 +8,9 @@ namespace Ariel.Systems.Animations
         [SerializeField] private Transform _endTarget;
         [SerializeField] private bool _snapping;
     
-        public override void StartTransition()
+        public override void SetTween()
         {
-            _transform.DOMove(_endTarget.position, _duration, _snapping)
+            Tween = _transform.DOMove(_endTarget.position, _duration, _snapping)
                 .SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
         }
     }

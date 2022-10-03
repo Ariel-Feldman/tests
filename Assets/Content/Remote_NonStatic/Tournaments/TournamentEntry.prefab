@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a3e07fad3a8ac4c8d3a031388f5dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tweenTransitionIn: {fileID: 0}
+  _tweenTransitionIn: {fileID: 4218730854535037884}
   _tweenTransitionIdle: {fileID: 0}
   _tweenTransitionOut: {fileID: 0}
 --- !u!114 &4218730854535037884
@@ -279,6 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 6185402831535022914}
-  _duration: 1
+  _duration: 2
   _ease: 0
-  _scaleFactor: 1
+  _scaleFactor: 2

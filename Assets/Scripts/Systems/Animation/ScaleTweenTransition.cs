@@ -7,10 +7,9 @@ namespace Ariel.Systems.Animations
     {
         [SerializeField] private float _scaleFactor;
         
-        public override void StartTransition()
+        public override void SetTween()
         {
-            Debug.Log("Start Tween");
-            _tween = _transform.DOScale(_transform.localScale * _scaleFactor, _duration)
+            Tween = _transform.DOScale(_transform.localScale * _scaleFactor, _duration)
                 .SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
         }
     }
