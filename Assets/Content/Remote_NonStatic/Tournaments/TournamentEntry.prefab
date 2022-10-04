@@ -279,6 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 6185402831535022914}
-  _duration: 2
-  _ease: 0
-  _scaleFactor: 2
+  _duration: 0.4
+  _ease: 1
+  _scaleFromZero: 1

@@ -232,7 +232,7 @@ MonoBehaviour:
   _transform: {fileID: 204394265}
   _duration: 2
   _ease: 13
-  _scaleFactor: 4
+  _scaleFromZero: 0
 --- !u!114 &204394270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,10 +851,6 @@ PrefabInstance:
     - target: {fileID: 750659557246902095, guid: a6b038557adb86641b4eb964e55c4c86, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 750659557413226013, guid: a6b038557adb86641b4eb964e55c4c86, type: 3}
-      propertyPath: m_HorizontalScrollbar
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 750659557482773450, guid: a6b038557adb86641b4eb964e55c4c86, type: 3}
       propertyPath: m_Name

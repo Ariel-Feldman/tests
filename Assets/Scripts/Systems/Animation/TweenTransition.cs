@@ -19,7 +19,11 @@ namespace Ariel.Systems.Animations
             Tween.Play();
         }
 
-        public abstract void SetTween();
+        public virtual void SetTween()
+        {
+            if (Tween == null) return;
+            Tween.SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
+        }
 
         public float Duration => _duration;
     }

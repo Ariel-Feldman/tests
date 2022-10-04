@@ -12,17 +12,18 @@ namespace Ariel.Systems
             Injector.ClearInstances();
             ViewSystem.Init();
             
-            if (!await HttpService.SetHttpClient())
-            {
-                ShowNoConnectionErrorPopup();
-                return;
-            }
-            
-            if (!await ServicesInitializer.InitServices())
-            {
-                ShowServiceDownErrorPopup();
-                return;
-            }
+            // if (!await HttpService.SetHttpClient())
+            // {
+            //     ShowNoConnectionErrorPopup();
+            //     return;
+            // }
+            //
+            // if (!await ServicesInitializer.InitServices())
+            // {
+            //     ShowServiceDownErrorPopup();
+            //     return;
+            // }
+            //
             
             await SceneSystem.Instance.LoadScene(SceneType.Main);
             
@@ -33,6 +34,7 @@ namespace Ariel.Systems
         
         private static void ShowNoConnectionErrorPopup()
         {
+            
             var errorPopup = new PopupBase();
             errorPopup.Header = "O No!";
             errorPopup.Body = "Looks like you connection is down \n Click to restart!";

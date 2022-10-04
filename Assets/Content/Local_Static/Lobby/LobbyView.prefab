@@ -794,6 +794,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TournamentEntry
       objectReference: {fileID: 0}
+    - target: {fileID: 4218730854535037884, guid: 0568ac458a8e22140a649bf81ad3da0d, type: 3}
+      propertyPath: _ease
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218730854535037884, guid: 0568ac458a8e22140a649bf81ad3da0d, type: 3}
+      propertyPath: _duration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6185402831535022914, guid: 0568ac458a8e22140a649bf81ad3da0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
