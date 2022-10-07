@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,24 +10,26 @@ namespace Ariel.Systems.Animations
         public override void SetTween()
         {
             var scaleTarget = _scaleFromZero ? 1 : 0;
-
             Tween = _transform.DOScale(scaleTarget, _duration);
+            if (_scaleFromZero)
+                Tween.OnStart(() => _transform.localScale = Vector3.zero);
+            
             base.SetTween();
-            
-            if (!_scaleFromZero) 
-                return;
-            
-            Tween.OnStart(() => _transform.localScale = Vector3.zero);
             
             if (Application.isEditor)
                 EditorPreviewFix();
         }
 
-        private async void EditorPreviewFix()
+        private void EditorPreviewFix()
         {
-            _transform.localScale = Vector3.zero;
-            await Task.Delay((int)(_duration * 1010));
-            _transform.localScale = Vector3.one;
+            _transform.localScale = _scaleFromZero ? Vector3.zero : Vector3.one;
+            Tween.OnComplete(EditorRunEnded);
+
+            void EditorRunEnded()
+            {
+                OnTweenEnd();
+                _transform.localScale = Vector3.one;
+            }
         }
     }
 }

@@ -15,18 +15,23 @@ public class PlayTweenInEditor : Editor
 
         if(GUILayout.Button("Play Tween"))
         {
-            var transition = (TweenTransition)target;
-            transition.SetTween();
-            RunTween(transition);
+            var tt = (TweenTransition)target;
+            tt.SetTween();
+            RunTween(tt);
         }
-
     }
 
-    private async void RunTween(TweenTransition tweenTransition)
+    private void RunTween(TweenTransition tt)
     {
-        DOTweenEditorPreview.PrepareTweenForPreview(tweenTransition.Tween);
+        DOTweenEditorPreview.PrepareTweenForPreview(tt.Tween, false);
         DOTweenEditorPreview.Start();
-        await Task.Delay((int)tweenTransition.Duration * 1000);
-        DOTweenEditorPreview.Stop(true);
+        
+        tt.RunInEditorEnded += EditorRunEnded;
+        
+        void EditorRunEnded()
+        {
+            tt.RunInEditorEnded -= EditorRunEnded;
+            DOTweenEditorPreview.Stop(true);
+        }
     }
 }

@@ -6,25 +6,33 @@ namespace Ariel.Systems.Animations
 {
     public abstract class TweenTransition : MonoBehaviour
     {
+        public Action OnTransitionEnded;
+        public Tween Tween { get; protected set; }
+        
         [SerializeField] protected Transform _transform;
         [SerializeField] protected float _duration;
         [SerializeField] protected Ease _ease;
 
-        public Tween Tween { get; protected set; }
-        public Action OnTransitionEnded;
 
+        public Action RunInEditorEnded;
+        
         public void StartTransition()
         {
-            if (Tween == null) SetTween();
+            SetTween();
             Tween.Play();
         }
 
         public virtual void SetTween()
         {
-            if (Tween == null) return;
-            Tween.SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
+            Tween?.SetEase(_ease).OnComplete(OnTweenEnd);
         }
 
-        public float Duration => _duration;
+        protected void OnTweenEnd()
+        {
+            if (Application.isEditor) 
+                RunInEditorEnded?.Invoke();
+            else
+                OnTransitionEnded?.Invoke();
+        }
     }
 }

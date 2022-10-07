@@ -1,11 +1,15 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 [RequireComponent(typeof(RectTransform))]
 public class SafeArea : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
-    // Start is called before the first frame update
+    private void OnRectTransformDimensionsChange()
+    {
+        ApplySafeArea();
+    }
+    
     private void ApplySafeArea()
     {
         if (_rectTransform == null) return;
@@ -23,10 +27,4 @@ public class SafeArea : MonoBehaviour
         _rectTransform.anchorMin = anchorMin;
         _rectTransform.anchorMax = anchorMax;
     }
-
-    private void OnRectTransformDimensionsChange()
-    {
-        ApplySafeArea();
-    }
-
 }
