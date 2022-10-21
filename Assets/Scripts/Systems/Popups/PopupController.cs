@@ -1,8 +1,9 @@
+using Ariel.MVCF;
 using UnityEngine.Events;
 
 namespace Ariel.Systems
 {
-    public class PopupBase
+    public class PopupController : BaseController
     {
         public string Header;
         public string Body;
@@ -12,9 +13,13 @@ namespace Ariel.Systems
         
         public string SecondButtonText;
         public UnityAction onSecondButtontClicked;
-
-
-        private PopupBaseView _popupBaseView;
+        
+        private PopupView _popupView;
+        
+        protected override void BindViews()
+        {
+            _popupView = BindView<PopupView>();
+        }
         
         public void SetActionButton(string buttonText, UnityAction onRestartClicked)
         {
@@ -27,5 +32,7 @@ namespace Ariel.Systems
             SecondButtonText = buttonText;
             onSecondButtontClicked = onRestartClicked;
         }
+
+        public override void Init() {}
     }
 }

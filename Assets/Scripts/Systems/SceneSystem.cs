@@ -26,11 +26,12 @@ namespace Ariel.Systems
             SetLoadingUiVisible(true);
             
             var loadSceneOperation = Addressables.LoadSceneAsync(_sceneAssetReferences[(int)sceneType], LoadSceneMode.Additive, false);
-            await LoadingScene(loadSceneOperation);
-            await SwappingActiveScene(loadSceneOperation);
-
+            await LoadSceneOperation(loadSceneOperation);
+            await SwipeActiveScene(loadSceneOperation);
+            
             CurrentScene = sceneType;
             ViewSystem.MapSceneViews();
+            
             SetLoadingUiVisible(false);
         }
 
@@ -40,7 +41,7 @@ namespace Ariel.Systems
             SetLoadingBarPercentage(0);
         }
 
-        private async Task LoadingScene(AsyncOperationHandle<SceneInstance> loadSceneOperation)
+        private async Task LoadSceneOperation(AsyncOperationHandle<SceneInstance> loadSceneOperation)
         {
             while (!loadSceneOperation.IsDone)
             {
@@ -49,7 +50,7 @@ namespace Ariel.Systems
             }
         }
 
-        private async Task SwappingActiveScene(AsyncOperationHandle<SceneInstance> loadSceneOperation)
+        private async Task SwipeActiveScene(AsyncOperationHandle<SceneInstance> loadSceneOperation)
         {
             var activateOperation = loadSceneOperation.Result.ActivateAsync();
             while (!activateOperation.isDone)

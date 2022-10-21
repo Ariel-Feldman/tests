@@ -4,13 +4,12 @@ namespace Ariel.Systems
 {
     public class PopupSystem
     {
-        public static void ShowErrorPopUp(PopupBase errorPopup)
+        public static void ShowErrorPopUp(PopupController errorPopup)
         {
-            Debug.Log("Error popup to raise here");
-            // PopupSystemView.Instance.AddPopupToQueue(errorPopup);
+            PopupSystemView.AddPopupToQueue(errorPopup);
         }
 
-        public static void ShowPopup(PopupBase popup)
+        public static void ShowPopup(PopupController popup)
         {
             Debug.Log($"Popup raised here: {popup.Header}");
         }

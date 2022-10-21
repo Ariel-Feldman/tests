@@ -4,27 +4,33 @@ using UnityEngine;
 
 namespace Ariel.MVCF
 {
-    public class TournamentsController : BaseController
+    public class TournamentsTabController : BaseController
     {
-        private TournamentView _view;
+        private TournamentsTabView _view;
 
-        public override void BindViews()
+        protected override void BindViews()
         {
-            _view = BindView<TournamentView>();
+            _view = BindView<TournamentsTabView>();
         }
-        
-        public async Task ShowTournaments()
+
+        public override void Init()
+        {
+            LoadTournament();
+        }
+
+        private async Task LoadTournament()
         {
             Debug.Log("Showing Tournaments");
-            
             UiBlockerSystem.Instance.ShowFullScreenLoadingCircle();
+            
             var tournamentsFeature = Injector.GetInstance<TournamentsFeature>();
             var tournaments = await tournamentsFeature.LoadTournaments();
+            
             UiBlockerSystem.Instance.HideFullScreenLoadingCircle();
             
             foreach (var tournament in tournaments)
             {
-                TournamentsController tournamentsController = Injector.GetInstance<TournamentsController>();
+                TournamentsTabController tournamentsTabController = Injector.GetInstance<TournamentsTabController>();
                 // var TournamentView = ViewResolver.GetView<TournamentView>();
             }
         }

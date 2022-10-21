@@ -12,13 +12,21 @@ public class PlayTweenInEditor : Editor
         DrawDefaultInspector();
         
         GUILayout.Space(10);
-
+        GUILayout.BeginHorizontal();
+        
         if(GUILayout.Button("Play Tween"))
         {
             var tt = (TweenTransition)target;
             tt.SetTween();
             RunTween(tt);
         }
+        if(GUILayout.Button("Stop Tween"))
+        {
+            if (DOTweenEditorPreview.isPreviewing)
+                DOTweenEditorPreview.Stop(true);
+        }
+        
+        GUILayout.EndHorizontal();
     }
 
     private void RunTween(TweenTransition tt)

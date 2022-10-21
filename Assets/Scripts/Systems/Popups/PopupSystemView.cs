@@ -6,14 +6,15 @@ namespace Ariel.Systems
 {
     public class PopupSystemView : Singleton<PopupSystemView>
     {
-        [SerializeField] private PopupBaseView _popupBaseView;
 
-        private List<PopupBase> _livePopups;
+        private List<PopupController> _livePopups;
 
-        public void AddPopupToQueue(PopupBase popupBase)
+        public static void AddPopupToQueue(PopupController popupController)
         {
-            _popupBaseView.SetBasicContext(popupBase);
-            var instantiatedPopup = Instantiate(_popupBaseView, transform);
+            // popupController.SetBasicContext(popupController);
+            // var instantiatedPopup = Instantiate(popupView, transform);
+            // _livePopups.Add(instan);
         }
+        
     }
 }

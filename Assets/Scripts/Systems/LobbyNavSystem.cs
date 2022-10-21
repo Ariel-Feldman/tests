@@ -1,25 +1,16 @@
-
 using System.Threading.Tasks;
+using Ariel.Utilities;
+using Ariel.MVCF;
 using UnityEngine;
 
-namespace Ariel.MVCF
+namespace Ariel.Systems
 {
-    public class LobbyController : BaseController
+    public class LobbyNavSystem : Singleton<LobbyNavSystem>
     {
         private static LobbyNavState _currentState;
         private static BaseController _currentTabController;
         
-        private static BaseController _BottomNavBarController;
-        
-        public override void Init()
-        {
-            _BottomNavBarController = GetController<BottomBarController>();
-            _BottomNavBarController.Init();
-            
-            Debug.Log("Bottom Bar Initialized");
-        }
-        
-        public async Task MoveTo(LobbyNavState state)
+        public static async Task MoveTo(LobbyNavState state)
         {
             if (state == _currentState) return;
             _currentState = state;
@@ -29,7 +20,7 @@ namespace Ariel.MVCF
             switch (state)
             {
                 case LobbyNavState.Tournaments:
-                    _currentTabController = GetController<TournamentsTabController>();
+                    _currentTabController = Injector.GetInstance<TournamentsTabController>();
                     break;
                 
                 case LobbyNavState.Store:
@@ -44,11 +35,24 @@ namespace Ariel.MVCF
             
             _currentTabController.Init();
         }
-        
-        private async Task CurrentStateTransitionOut()
+
+
+        private static async Task CurrentStateTransitionOut()
         {
             if (_currentTabController == null) return;
-            await _currentTabController.TransitionOutView();
+            Debug.Log("Awaiting For Transition Out");
+            await Task.Delay(333);
+            // await _currentTabController.StateTransitionOut();
         }
     }
+    
+}
+
+public enum LobbyNavState
+{
+    Boot,
+    Tournaments,
+    Store,
+    Account,
+    CRM
 }

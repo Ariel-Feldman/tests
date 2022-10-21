@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public class BaseView : MonoBehaviour
+    public abstract class BaseView : MonoBehaviour
     {
-        public void DeActiveView() => gameObject.SetActive(false);
+        public void DeactivateView() => gameObject.SetActive(false);
+
         public async Task TransitionOut()
         {
-            await Task.Delay(333);
+            
         }
     }
 }

@@ -5,27 +5,28 @@ namespace Ariel.Systems
 {
     public class ViewMap
     {
+        public readonly Dictionary<Type, BaseView> SceneViews;
+        
         public ViewMap(BaseView[] views)
         {
-            _sceneViews = new();
+            SceneViews = new();
             foreach (var view in views)
-                _sceneViews.Add(view.GetType(), view);
+                SceneViews.Add(view.GetType(), view);
         }
         
-        public void DeActiveViews()
+        public void SetViewsInactive()
         {
-            foreach (var keyValue in _sceneViews)
+            foreach (var keyValue in SceneViews)
             {
-                keyValue.Value.DeActiveView();
+                keyValue.Value.DeactivateView();
             }
         }
 
         public BaseView GetView(Type type)
         {
-            _sceneViews.TryGetValue(type, out BaseView view);
+            SceneViews.TryGetValue(type, out BaseView view);
             return view;
         }
         
-        private readonly Dictionary<Type, BaseView> _sceneViews;
     }
 }

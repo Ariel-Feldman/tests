@@ -10,8 +10,8 @@ namespace Ariel.Systems.Animations
     
         public override void SetTween()
         {
-            Tween = _transform.DORotate(_endVector, _duration, _rotateMode)
-                .SetEase(_ease).OnComplete(() => OnTransitionEnded?.Invoke());
+            Tween = _transform.DORotate(_endVector, _duration, _rotateMode);
+            base.SetTween();        
         }
     }
 }

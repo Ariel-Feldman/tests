@@ -6,7 +6,7 @@ namespace Ariel.Systems
     public static class ViewSystem
     {
         private static ViewMap[] _viewMap;
-        private static int _currentSceneIndex => (int)SceneSystem.CurrentScene;
+        private static int CurrentSceneIndex => (int)SceneSystem.CurrentScene;
 
         public static void Init()
         {
@@ -15,28 +15,31 @@ namespace Ariel.Systems
 
         public static void MapSceneViews()
         {
-            if (_viewMap[_currentSceneIndex] != null)
+            if (_viewMap[CurrentSceneIndex] == null)
             {
-                _viewMap[_currentSceneIndex].DeActiveViews();
-                return;
+                var views = GameObject.FindObjectsOfType<BaseView>();
+                _viewMap[CurrentSceneIndex] = new ViewMap(views);
             }
 
-            var views = GameObject.FindObjectsOfType<BaseView>();
+
+            _viewMap[CurrentSceneIndex].SetViewsInactive();
+            
             // Debug
-            Debug.Log($"View Count: {views.Length}");
-            foreach (var view in views)
+            var viewsDebug = _viewMap[CurrentSceneIndex].SceneViews;
+            Debug.Log($"View Count: {viewsDebug}");
+            foreach (var view in viewsDebug)
             {
                 Debug.Log($"view: {view}");
             }
             // Debug
-            _viewMap[_currentSceneIndex] = new ViewMap(views);
-            _viewMap[_currentSceneIndex].DeActiveViews();
+            
+
         }
         
         public static T GetView<T>() where T : BaseView
         {
             BaseView view;
-            view = _viewMap[_currentSceneIndex].GetView(typeof(T));
+            view = _viewMap[CurrentSceneIndex].GetView(typeof(T));
             
             if (view == null)
                 Debug.LogWarning($"Failed to get view type: {typeof(T)}");

@@ -26,16 +26,13 @@ namespace Ariel.Systems
             //
             
             await SceneSystem.Instance.LoadScene(SceneType.Main);
-            
-            var DesiredNavStateOnBoot = NavState.Lobby; // Redirection system kick here?
-            
-            await NavSystem.MoveTo(DesiredNavStateOnBoot);
+            RedirectSystem.BootEnded();
         }
         
         private static void ShowNoConnectionErrorPopup()
         {
             
-            var errorPopup = new PopupBase();
+            var errorPopup = new PopupController();
             errorPopup.Header = "O No!";
             errorPopup.Body = "Looks like you connection is down \n Click to restart!";
             errorPopup.SetActionButton("Restart", Boot);
@@ -44,7 +41,7 @@ namespace Ariel.Systems
         
         private static void ShowServiceDownErrorPopup()
         {
-            var errorPopup = new PopupBase();
+            var errorPopup = new PopupController();
             errorPopup.Header = "Services are down!";
             errorPopup.Body = "Services are down!!! \n Click to restart!";
             errorPopup.SetActionButton("Restart App", Boot);
