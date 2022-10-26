@@ -14,7 +14,6 @@ namespace Ariel.MVCF
             var httpService = Injector.GetInstance<HttpService>();
             var tournaments = httpService.Get<TournamentResponse>("urlhere");
             
-            await MonoSystem.Instance.AwaitFrames(10);
             return tournaments.Result.Tournaments;
         }
     }

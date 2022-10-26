@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Ariel.Systems
+namespace Ariel.MVCF
 {
     public abstract class BaseView : MonoBehaviour
     {

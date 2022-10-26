@@ -11,13 +11,7 @@ namespace Ariel.Systems
     {
         public static UnityAction OnAppBackInFocus;
         public static UnityAction OnAppOutOfFocus;
-        
-        private void OnApplicationFocus(bool hasFocus)
-        {
-            if (hasFocus) OnAppBackInFocus?.Invoke();
-            else OnAppOutOfFocus?.Invoke();
-        }
-        
+
         
         public async Task AwaitFrames(int numberOfFrames)
         {
@@ -25,20 +19,24 @@ namespace Ariel.Systems
             AwaitFramesEvent(numberOfFrames, () => tcs.SetResult(true));
             await tcs.Task;
         }
-        
-        public void AwaitFramesEvent(int numberOfFrames, Action onEnd)
+
+        private void AwaitFramesEvent(int numberOfFrames, Action onEnd)
         {
             StartCoroutine(AwaitFramesCoroutine(numberOfFrames, onEnd));
         }
 
-        IEnumerator AwaitFramesCoroutine(int numberOfFrames, Action onEnd)
+        private IEnumerator AwaitFramesCoroutine(int numberOfFrames, Action onEnd)
         {
             for (int i = 0; i < numberOfFrames; i++)
-            {
                 yield return null;
-            }
-
+            
             onEnd?.Invoke();
+        }
+        
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (hasFocus) OnAppBackInFocus?.Invoke();
+            else OnAppOutOfFocus?.Invoke();
         }
     }
 }

@@ -11,10 +11,10 @@ namespace Ariel.MVCF
 
         public virtual void Init() { }
         
-        public async Task TransitionOutView()
+        public async Task TransitionOut()
         {
             await SubControllersOutRecursion();
-            await OwnViewTransitionOut();
+            await ViewTransitionOut();
         }
         
         protected virtual void BindViews() { }
@@ -45,10 +45,10 @@ namespace Ariel.MVCF
                 return;
 
             foreach (var subController in _subControllers)
-                await subController.TransitionOutView();
+                await subController.TransitionOut();
         }
         
-        private async Task OwnViewTransitionOut()
+        private async Task ViewTransitionOut()
         {
             var tasks = new List<Task>();
             foreach (var view in _views)

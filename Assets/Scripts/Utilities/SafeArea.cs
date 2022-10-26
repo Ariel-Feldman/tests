@@ -5,8 +5,10 @@ using UnityEngine;
 public class SafeArea : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
+
     private void OnRectTransformDimensionsChange()
     {
+        // await MonoSystem.Instance.AwaitFrames(1);
         ApplySafeArea();
     }
     

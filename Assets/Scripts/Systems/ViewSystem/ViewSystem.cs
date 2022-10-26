@@ -1,4 +1,5 @@
 using System;
+using Ariel.MVCF;
 using UnityEngine;
 
 namespace Ariel.Systems
@@ -25,15 +26,14 @@ namespace Ariel.Systems
             _viewMap[CurrentSceneIndex].SetViewsInactive();
             
             // Debug
-            var viewsDebug = _viewMap[CurrentSceneIndex].SceneViews;
-            Debug.Log($"View Count: {viewsDebug}");
-            foreach (var view in viewsDebug)
-            {
-                Debug.Log($"view: {view}");
-            }
+            // var viewsDebug = _viewMap[CurrentSceneIndex].SceneViews;
+            // Debug.Log($"View Count: {viewsDebug.Count}");
+            // foreach (var view in viewsDebug)
+            // {
+            //     Debug.Log($"view: {view}");
+            // }
             // Debug
             
-
         }
         
         public static T GetView<T>() where T : BaseView
