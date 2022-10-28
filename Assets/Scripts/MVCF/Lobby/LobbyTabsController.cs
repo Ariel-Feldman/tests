@@ -15,10 +15,13 @@ namespace Ariel.MVCF
 
         public async Task MoveTo(LobbyNavState state)
         {
-            if (state == _currentState) return;
+            if (state == _currentState) 
+                return;
+            
             _currentState = state;
 
-            await CurrentStateTransitionOut();
+            if (_currentContentController != null)
+                await _currentContentController.TransitionOut();
 
             switch (state)
             {
@@ -27,22 +30,21 @@ namespace Ariel.MVCF
                     break;
 
                 case LobbyNavState.Store:
+                    // _currentContentController = Injector.GetInstance<StoreTabController>();
                     break;
 
                 case LobbyNavState.Account:
+                    // _currentContentController = Injector.GetInstance<AccountTabController>();
+
                     break;
 
                 case LobbyNavState.CRM:
+                    // _currentContentController = Injector.GetInstance<CRMTabController>();
+
                     break;
             }
 
             _currentContentController.Init();
-        }
-        
-        private async Task CurrentStateTransitionOut()
-        {
-            if (_currentContentController == null) return;
-            await _currentContentController.TransitionOut();
         }
     }
 

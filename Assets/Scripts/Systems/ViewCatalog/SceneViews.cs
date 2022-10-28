@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public static class ViewSystem
+    public static class SceneViews
     {
         private static ViewMap[] _viewMap;
         private static int CurrentSceneIndex => (int)SceneSystem.CurrentScene;
@@ -33,7 +33,6 @@ namespace Ariel.Systems
             //     Debug.Log($"view: {view}");
             // }
             // Debug
-            
         }
         
         public static T GetView<T>() where T : BaseView

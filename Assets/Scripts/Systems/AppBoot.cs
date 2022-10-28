@@ -10,7 +10,7 @@ namespace Ariel.Systems
         {
             LocalConfigs.SetEmbeddedConfigs();
             Injector.ClearInstances();
-            ViewSystem.Init();
+            SceneViews.Init();
             
             // if (!await HttpService.SetHttpClient())
             // {
