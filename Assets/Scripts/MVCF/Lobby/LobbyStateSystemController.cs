@@ -1,44 +1,46 @@
+using System;
 using System.Threading.Tasks;
+using Systems.StateSystem;
 
 namespace Ariel.MVCF
 {
-    public class LobbyTabsController : BaseController
+    public class LobbyStateSystemController : BaseController, IStateSystem<LobbyState>
     {
-        private LobbyNavState _currentState;
+        private LobbyState _currentState;
         private BaseController _currentContentController;
         private BaseController _currentButtonController;
 
         public override void Init()
         {
-            MoveTo(LobbyNavState.Tournaments);
+            MoveToState(LobbyState.Tournaments);
         }
 
-        public async Task MoveTo(LobbyNavState state)
+        public async Task MoveToState(LobbyState toState)
         {
-            if (state == _currentState) 
+            if (toState == _currentState) 
                 return;
             
-            _currentState = state;
-
             if (_currentContentController != null)
                 await _currentContentController.TransitionOut();
+            
+            _currentState = toState;
 
-            switch (state)
+            switch (toState)
             {
-                case LobbyNavState.Tournaments:
+                case LobbyState.Tournaments:
                     _currentContentController = Injector.GetInstance<TournamentsTabController>();
                     break;
 
-                case LobbyNavState.Store:
+                case LobbyState.Store:
                     // _currentContentController = Injector.GetInstance<StoreTabController>();
                     break;
 
-                case LobbyNavState.Account:
+                case LobbyState.Account:
                     // _currentContentController = Injector.GetInstance<AccountTabController>();
 
                     break;
 
-                case LobbyNavState.CRM:
+                case LobbyState.Social:
                     // _currentContentController = Injector.GetInstance<CRMTabController>();
 
                     break;
@@ -48,11 +50,11 @@ namespace Ariel.MVCF
         }
     }
 
-    public enum LobbyNavState
+    public enum LobbyState
     {
         Tournaments,
         Store,
         Account,
-        CRM
+        Social
     }
 }

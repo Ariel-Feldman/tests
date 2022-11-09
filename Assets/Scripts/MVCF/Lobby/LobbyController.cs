@@ -7,8 +7,8 @@ namespace Ariel.MVCF
             var resourceBarController = GetController<ResourceBarController>();
             resourceBarController.Init();
 
-            var lobbyTabsController = GetController<LobbyTabsController>();
-            lobbyTabsController.Init();
+            var lobbyStateController = GetController<LobbyStateSystemController>();
+            lobbyStateController.Init();
         }
     }
 }
