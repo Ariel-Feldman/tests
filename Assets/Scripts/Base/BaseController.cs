@@ -9,7 +9,7 @@ namespace Ariel.MVCF
         private List<BaseView> _views = new();
         private List<BaseController> _subControllers = new();
 
-        public virtual void Init() { }
+        public virtual void Init() {}
         
         public async Task TransitionOut()
         {
@@ -27,13 +27,12 @@ namespace Ariel.MVCF
             return view;
         }
 
-        protected T GetController<T>() where T : BaseController, new()
+        protected T CreateController<T>() where T : BaseController, new()
         {
             var controller = Injector.GetInstance<T>();
             _subControllers.Add(controller);
             
-            if (_views.Count == 0) 
-                BindViews();
+            controller.BindViews();
             
             return controller;
         }

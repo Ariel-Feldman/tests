@@ -15,6 +15,7 @@ namespace Ariel.MVCF
 
         public override void Init()
         {
+            base.Init();
             LoadTournament();
         }
 

@@ -4,10 +4,10 @@ namespace Ariel.MVCF
     {
         public override void Init()
         {
-            var resourceBarController = GetController<ResourceBarController>();
+            var resourceBarController = CreateController<ResourceBarController>();
             resourceBarController.Init();
 
-            var lobbyStateController = GetController<LobbyStateSystemController>();
+            var lobbyStateController = CreateController<LobbyStateSystemController>();
             lobbyStateController.Init();
         }
     }

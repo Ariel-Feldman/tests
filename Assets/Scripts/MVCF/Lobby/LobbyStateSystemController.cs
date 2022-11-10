@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Systems.StateSystem;
 
@@ -28,20 +27,20 @@ namespace Ariel.MVCF
             switch (toState)
             {
                 case LobbyState.Tournaments:
-                    _currentContentController = Injector.GetInstance<TournamentsTabController>();
+                    _currentContentController = CreateController<TournamentsTabController>();
                     break;
 
                 case LobbyState.Store:
-                    // _currentContentController = Injector.GetInstance<StoreTabController>();
+                    // _currentContentController = GetController<StoreTabController>();
                     break;
 
                 case LobbyState.Account:
-                    // _currentContentController = Injector.GetInstance<AccountTabController>();
+                    // _currentContentController = GetController<AccountTabController>();
 
                     break;
 
                 case LobbyState.Social:
-                    // _currentContentController = Injector.GetInstance<CRMTabController>();
+                    // _currentContentController = GetController<CRMTabController>();
 
                     break;
             }

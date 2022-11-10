@@ -7,7 +7,7 @@ namespace Ariel.Editor
 
     public static class PlayFromTheFirstScene
     {
-        const string playFromFirstMenuStr = "Edit/PlayFromBoot";
+        const string playFromFirstMenuStr = "Ariel/PlayFromBoot";
 
         static bool playFromFirstScene
         {
