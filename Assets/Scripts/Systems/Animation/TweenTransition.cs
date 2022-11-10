@@ -12,8 +12,7 @@ namespace Ariel.Systems.Animations
         [SerializeField] protected Transform _transform;
         [SerializeField] protected float _duration;
         [SerializeField] protected Ease _ease;
-
-
+        
         public Action RunInEditorEnded;
         
         public void StartTransition()

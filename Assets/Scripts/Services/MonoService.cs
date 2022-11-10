@@ -1,17 +1,16 @@
 using System.Threading.Tasks;
 using Ariel.Utilities;
 
-namespace Ariel.Systems
+namespace Ariel.Services
 {
     using System.Collections;
     using UnityEngine.Events;
     using System;
     
-    public class MonoSystem : Singleton<MonoSystem>
+    public class MonoService : Singleton<MonoService>
     {
         public static UnityAction OnAppBackInFocus;
         public static UnityAction OnAppOutOfFocus;
-
         
         public async Task AwaitFrames(int numberOfFrames)
         {

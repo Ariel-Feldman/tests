@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public class AnimatorEvents : MonoBehaviour
+    public class AnimatorViewEvents : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private List<string> _states;
