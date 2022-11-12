@@ -1,13 +1,20 @@
 using System.Threading.Tasks;
 using Systems.StateSystem;
 
-namespace Ariel.MVCF
+namespace Ariel.Models
 {
     public class LobbyStateSystemController : BaseController, IStateSystem<LobbyState>
     {
         private LobbyState _currentState;
         private BaseController _currentContentController;
         private BaseController _currentButtonController;
+
+        private LobbyStateSystemView _view;
+
+        protected override void BindViews()
+        {
+            _view = BindView<LobbyStateSystemView>();
+        }
 
         public override void Init()
         {

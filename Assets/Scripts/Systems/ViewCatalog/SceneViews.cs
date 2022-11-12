@@ -1,5 +1,5 @@
 using System;
-using Ariel.MVCF;
+using Ariel.Models;
 using UnityEngine;
 
 namespace Ariel.Systems

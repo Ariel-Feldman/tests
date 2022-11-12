@@ -8,10 +8,9 @@ namespace Ariel.Systems.Animations
         [SerializeField] private Vector3 _endVector;
         [SerializeField] private RotateMode _rotateMode;
     
-        public override void SetTween()
+        protected override void SetTweenInstance()
         {
             Tween = _transform.DORotate(_endVector, _duration, _rotateMode);
-            base.SetTween();        
         }
     }
 }

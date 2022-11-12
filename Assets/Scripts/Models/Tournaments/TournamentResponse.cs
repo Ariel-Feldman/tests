@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Ariel.MVCF
+namespace Ariel.Models
 {
     public class TournamentResponse
     {
-        public List<TournamentModel> Tournaments;
+        public List<TournamentData> Tournaments;
         public int TournamentsCount;
         public DateTime LastDateTimeResponded;
     }

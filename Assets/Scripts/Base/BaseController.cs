@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ariel.Systems;
 
-namespace Ariel.MVCF
+namespace Ariel.Models
 {
     public abstract class BaseController
     {

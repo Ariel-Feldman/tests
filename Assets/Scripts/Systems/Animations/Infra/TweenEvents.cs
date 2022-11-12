@@ -11,7 +11,7 @@ namespace Ariel.Systems.Animations
 
         public Action TransitionOutEnded;
         
-        private void Awake()
+        private void Start()
         {
             if (_tweenTransitionIn != null)
             {

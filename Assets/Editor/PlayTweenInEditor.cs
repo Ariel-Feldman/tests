@@ -17,13 +17,14 @@ public class PlayTweenInEditor : Editor
         if(GUILayout.Button("Play Tween"))
         {
             var tt = (TweenTransition)target;
-            tt.SetTween();
+            tt.SetEditorPreviewTween();
             RunTween(tt);
         }
+        
         if(GUILayout.Button("Stop Tween"))
         {
             if (DOTweenEditorPreview.isPreviewing)
-                DOTweenEditorPreview.Stop(true);
+                DOTweenEditorPreview.Stop();
         }
         
         GUILayout.EndHorizontal();
@@ -31,15 +32,14 @@ public class PlayTweenInEditor : Editor
 
     private void RunTween(TweenTransition tt)
     {
-        DOTweenEditorPreview.PrepareTweenForPreview(tt.Tween, false);
+        DOTweenEditorPreview.PrepareTweenForPreview(tt.Tween);
         DOTweenEditorPreview.Start();
-        
         tt.RunInEditorEnded += EditorRunEnded;
         
         void EditorRunEnded()
         {
             tt.RunInEditorEnded -= EditorRunEnded;
-            DOTweenEditorPreview.Stop(true);
+            DOTweenEditorPreview.Stop();
         }
     }
 }

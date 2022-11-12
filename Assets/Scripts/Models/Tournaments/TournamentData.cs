@@ -1,6 +1,6 @@
 namespace Ariel.Models
 {
-    public class ControllerFactory
+    public class TournamentData
     {
         
     }

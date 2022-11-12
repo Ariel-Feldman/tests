@@ -1,4 +1,4 @@
-using Ariel.MVCF;
+using Ariel.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using Ariel.Services;
 using Ariel.Systems;
 
-namespace Ariel.MVCF
+namespace Ariel.Models
 {
     public class TournamentsFeature
     {
-        private List<TournamentModel> _tournaments;
+        private List<TournamentData> _tournaments;
         
-        public async Task<List<TournamentModel>> LoadTournaments()
+        public async Task<List<TournamentData>> LoadTournaments()
         {
             var httpService = Injector.GetInstance<HttpService>();
             var tournaments = httpService.Get<TournamentResponse>("urlhere");

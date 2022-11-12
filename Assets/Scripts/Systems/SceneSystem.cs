@@ -15,8 +15,10 @@ namespace Ariel.Systems
         public static SceneType CurrentScene { get; private set; }
         
         [SerializeField] private GameObject _loadingBar;
+        
         [SerializeField] private Image _loadingBarFillImage;
         [SerializeField] private TMP_Text _loadingBarPercentage;
+        
         [SerializeField] private AssetReference[] _sceneAssetReferences;
         
         private SceneInstance _lastHandle;
@@ -55,7 +57,7 @@ namespace Ariel.Systems
             var activateOperation = loadSceneOperation.Result.ActivateAsync();
             while (!activateOperation.isDone)
             {
-                SetLoadingBarPercentage(loadSceneOperation.PercentComplete + activateOperation.progress);
+                SetLoadingBarPercentage(0.9f + (0.1f * activateOperation.progress));
                 await Task.Delay(10);
             }
             

@@ -1,4 +1,4 @@
-namespace Ariel.MVCF
+namespace Ariel.Models
 {
     public class ResourceBarView : BaseView
     {

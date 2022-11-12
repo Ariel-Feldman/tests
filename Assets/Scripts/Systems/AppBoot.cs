@@ -1,5 +1,5 @@
 using Ariel.Config;
-using Ariel.MVCF;
+using Ariel.Models;
 using Ariel.Services;
 
 namespace Ariel.Systems

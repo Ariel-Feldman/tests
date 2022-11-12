@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Ariel.Systems;
 using UnityEngine;
 
-namespace Ariel.MVCF
+namespace Ariel.Models
 {
     public class TournamentsTabController : BaseController
     {

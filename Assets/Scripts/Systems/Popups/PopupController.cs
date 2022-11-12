@@ -1,4 +1,4 @@
-using Ariel.MVCF;
+using Ariel.Models;
 using UnityEngine.Events;
 
 namespace Ariel.Systems

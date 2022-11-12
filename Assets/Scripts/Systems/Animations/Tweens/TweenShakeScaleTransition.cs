@@ -11,15 +11,11 @@ namespace Ariel.Systems.Animations
         
         [SerializeField] private bool _loop;
 
-        public override void SetTween()
+        protected override void SetTweenInstance()
         {
             Tween = _transform.DOShakeScale(_duration, _strength , _vibrato, _randomness,true ,ShakeRandomnessMode.Harmonic);
             if (_loop)
-            {
-                Tween.SetEase(_ease).SetLoops(-1);
-            }
-            else
-                base.SetTween();        
+                Tween.SetLoops(-1);
         }
     }
 }
