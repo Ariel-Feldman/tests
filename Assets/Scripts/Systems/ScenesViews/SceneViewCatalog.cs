@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public static class SceneViews
+    public static class SceneViewCatalog
     {
-        private static ViewMap[] _viewMap;
+        private static SceneViewMap[] _viewMap;
         private static int CurrentSceneIndex => (int)SceneSystem.CurrentScene;
 
         public static void Init()
         {
-            _viewMap = new ViewMap[Enum.GetNames(typeof(SceneType)).Length];
+            _viewMap = new SceneViewMap[Enum.GetNames(typeof(SceneType)).Length];
         }
 
         public static void MapSceneViews()
@@ -19,7 +19,7 @@ namespace Ariel.Systems
             if (_viewMap[CurrentSceneIndex] == null)
             {
                 var views = GameObject.FindObjectsOfType<BaseView>();
-                _viewMap[CurrentSceneIndex] = new ViewMap(views);
+                _viewMap[CurrentSceneIndex] = new SceneViewMap(views);
             }
 
 

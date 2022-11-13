@@ -9,12 +9,17 @@ public class SafeArea : MonoBehaviour
     private void OnRectTransformDimensionsChange()
     {
         // await MonoSystem.Instance.AwaitFrames(1);
-        _rectTransform = GetComponent<RectTransform>();
         ApplySafeArea();
     }
-    
+
+    private void Start()
+    {
+        ApplySafeArea();
+    }
+
     private void ApplySafeArea()
     {
+        _rectTransform = GetComponent<RectTransform>();
         if (_rectTransform == null) return;
         
         var safeArea = Screen.safeArea;

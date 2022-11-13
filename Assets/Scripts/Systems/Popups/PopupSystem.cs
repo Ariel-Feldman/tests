@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public class PopupSystem
+    public static class PopupSystem
     {
-        public static void ShowErrorPopUp(PopupController errorPopup)
+        public static void ShowErrorPopUp(BasePopup errorBasePopup)
         {
-            PopupSystemView.AddPopupToQueue(errorPopup);
+            PopupSystemView.Instance.ShowNextPopup(errorBasePopup);
         }
 
-        public static void ShowPopup(PopupController popup)
+        public static void ShowPopup(BasePopup basePopup)
         {
-            Debug.Log($"Popup raised here: {popup.Header}");
+            Debug.Log($"Popup raised here: {basePopup.Header}");
         }
     }
 }

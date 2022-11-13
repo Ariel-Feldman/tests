@@ -32,7 +32,7 @@ namespace Ariel.Systems
             await SwipeActiveScene(loadSceneOperation);
             
             CurrentScene = sceneType;
-            SceneViews.MapSceneViews();
+            SceneViewCatalog.MapSceneViews();
             
             SetLoadingUiVisible(false);
         }

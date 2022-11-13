@@ -1,19 +1,24 @@
 using System.Collections.Generic;
 using Ariel.Utilities;
+using UnityEngine;
 
 namespace Ariel.Systems
 {
     public class PopupSystemView : Singleton<PopupSystemView>
     {
+        [SerializeField] private PopupView _errorPopupView;
+        
+        private List<BasePopup> _popupQueue;
 
-        private List<PopupController> _livePopups;
-
-        public static void AddPopupToQueue(PopupController popupController)
+        public void CloseAllPopups()
         {
-            // popupController.SetBasicContext(popupController);
-            // var instantiatedPopup = Instantiate(popupView, transform);
-            // _livePopups.Add(instan);
+            _errorPopupView.gameObject.SetActive(false);
         }
         
+        public void ShowNextPopup(BasePopup basePopup)
+        {
+            basePopup.SetPopupView(_errorPopupView);
+            _errorPopupView.gameObject.SetActive(true);
+        }
     }
 }

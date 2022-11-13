@@ -4,11 +4,11 @@ using Ariel.Models;
 
 namespace Ariel.Systems
 {
-    public class ViewMap
+    public class SceneViewMap
     {
         public readonly Dictionary<Type, BaseView> SceneViews;
         
-        public ViewMap(BaseView[] views)
+        public SceneViewMap(BaseView[] views)
         {
             SceneViews = new();
             foreach (var view in views)

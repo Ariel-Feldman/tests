@@ -1,6 +1,8 @@
+using System;
 using Ariel.Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Ariel.Systems
@@ -9,15 +11,43 @@ namespace Ariel.Systems
     {
         [SerializeField] private TMP_Text _header;
         [SerializeField] private TMP_Text _body;
+        
         [SerializeField] private TMP_Text _actionButtonText;
         [SerializeField] private Button _actionButton;
         
-        public void SetUi(PopupController popupController)
+        [SerializeField] private TMP_Text _secondActionButtonText;
+        [SerializeField] private Button _secondActionButton;
+
+        public UnityAction OnPopupClose;
+        
+        public void SetTexts(string header, string body)
         {
-            _header.text = popupController.Header;
-            _body.text = popupController.Body;
-            _actionButtonText.text = popupController.ButtonText;
-            _actionButton.onClick.AddListener(popupController.onButtontClicked);
+            _header.text = header;
+            _body.text = body;
+        }
+
+        public void SetActionButton(string buttonText, UnityAction onButtonClicked)
+        {
+            _actionButtonText.text = buttonText;
+            _actionButton.onClick.AddListener(OnButtonClicked);
+            
+            void OnButtonClicked()
+            {
+                _actionButton.onClick.RemoveAllListeners();
+                onButtonClicked.Invoke();
+            }
+        }
+        
+        public void SetSecondActionButton(string buttonText, UnityAction onButtonClicked)
+        {
+            _secondActionButtonText.text = buttonText;
+            _secondActionButton.onClick.AddListener(OnSecondButtonClicked);
+            
+            void OnSecondButtonClicked()
+            {
+                _secondActionButton.onClick.RemoveAllListeners();
+                onButtonClicked.Invoke();
+            }
         }
     }
 }

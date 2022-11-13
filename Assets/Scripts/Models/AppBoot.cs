@@ -1,6 +1,6 @@
 using Ariel.Config;
-using Ariel.Models;
 using Ariel.Systems;
+using UnityEngine;
 
 namespace Ariel.Models
 {
@@ -10,9 +10,9 @@ namespace Ariel.Models
         {
             LocalConfigs.SetEmbeddedConfigs();
             Injector.ClearInstances();
-            SceneViews.Init();
+            SceneViewCatalog.Init();
             
-            // if (!await HttpService.SetHttpClient())
+            // // if (!await HttpService.SetHttpClient())
             // {
             //     ShowNoConnectionErrorPopup();
             //     return;
@@ -32,20 +32,25 @@ namespace Ariel.Models
         private static void ShowNoConnectionErrorPopup()
         {
             
-            var errorPopup = new PopupController();
+            var errorPopup = new BasePopup();
             errorPopup.Header = "O No!";
             errorPopup.Body = "Looks like you connection is down \n Click to restart!";
-            errorPopup.SetActionButton("Restart", Boot);
+            errorPopup.ActionButton("Restart", PrintDebugClick);
             PopupSystem.ShowErrorPopUp(errorPopup);
         }
         
         private static void ShowServiceDownErrorPopup()
         {
-            var errorPopup = new PopupController();
+            var errorPopup = new BasePopup();
             errorPopup.Header = "Services are down!";
             errorPopup.Body = "Services are down!!! \n Click to restart!";
-            errorPopup.SetActionButton("Restart App", Boot);
+            errorPopup.ActionButton("Restart App", PrintDebugClick);
             PopupSystem.ShowErrorPopUp(errorPopup);
+        }
+        
+        private static void PrintDebugClick()
+        {
+            Debug.Log("Clicked...");
         }
     }
 }
