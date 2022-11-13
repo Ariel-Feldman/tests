@@ -1,8 +1,8 @@
 using Ariel.Config;
 using Ariel.Models;
-using Ariel.Services;
+using Ariel.Systems;
 
-namespace Ariel.Systems
+namespace Ariel.Models
 {
     public static class AppBoot 
     {

@@ -3,17 +3,17 @@ using Systems.StateSystem;
 
 namespace Ariel.Models
 {
-    public class LobbyStateSystemController : BaseController, IStateSystem<LobbyState>
+    public class LobbyStateController : BaseController, IStateSystem<LobbyState>
     {
         private LobbyState _currentState;
         private BaseController _currentContentController;
         private BaseController _currentButtonController;
 
-        private LobbyStateSystemView _view;
+        private LobbyStateView _view;
 
         protected override void BindViews()
         {
-            _view = BindView<LobbyStateSystemView>();
+            _view = BindView<LobbyStateView>();
         }
 
         public override void Init()

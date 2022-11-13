@@ -18,7 +18,7 @@ namespace Ariel.Systems.Animations
         public void StartTransition()
         {
             SetTween();
-            OnTweenStart();
+            OnTweenStart(); // use this instead OnComplete in DOTween
             Tween.Play();
         }
         
@@ -45,8 +45,8 @@ namespace Ariel.Systems.Animations
             void EditorRunEnded()
             {
                 // if tween have start value no need for this
-                SetEditorStartValue();
                 RunInEditorEnded.Invoke();
+                SetEditorStartValue();
             }
         }
         

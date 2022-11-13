@@ -7,7 +7,7 @@ namespace Ariel.Models
             var resourceBarController = CreateController<ResourceBarController>();
             resourceBarController.Init();
 
-            var lobbyStateController = CreateController<LobbyStateSystemController>();
+            var lobbyStateController = CreateController<LobbyStateController>();
             lobbyStateController.Init();
         }
     }

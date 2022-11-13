@@ -21,18 +21,12 @@ public class PlayTweenInEditor : Editor
             RunTween(tt);
         }
         
-        if(GUILayout.Button("Stop Tween"))
-        {
-            if (DOTweenEditorPreview.isPreviewing)
-                DOTweenEditorPreview.Stop();
-        }
-        
         GUILayout.EndHorizontal();
     }
 
     private void RunTween(TweenTransition tt)
     {
-        DOTweenEditorPreview.PrepareTweenForPreview(tt.Tween);
+        DOTweenEditorPreview.PrepareTweenForPreview(tt.Tween, false);
         DOTweenEditorPreview.Start();
         tt.RunInEditorEnded += EditorRunEnded;
         

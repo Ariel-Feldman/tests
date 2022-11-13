@@ -4,11 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class SafeArea : MonoBehaviour
 {
-    [SerializeField] private RectTransform _rectTransform;
+    private RectTransform _rectTransform;
 
     private void OnRectTransformDimensionsChange()
     {
         // await MonoSystem.Instance.AwaitFrames(1);
+        _rectTransform = GetComponent<RectTransform>();
         ApplySafeArea();
     }
     
