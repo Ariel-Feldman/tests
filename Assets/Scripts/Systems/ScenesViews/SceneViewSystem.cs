@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public static class SceneViewCatalog
+    public static class SceneViewSystem
     {
         private static SceneViewMap[] _viewMap;
         private static int CurrentSceneIndex => (int)SceneSystem.CurrentScene;

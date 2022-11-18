@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public class TweenPositionTransition : TweenTransition
+    public class TweenPositionTransition : BaseTweenTransition
     {
         [SerializeField] private Transform _startPostion;
         [SerializeField] private Transform _endPosition;

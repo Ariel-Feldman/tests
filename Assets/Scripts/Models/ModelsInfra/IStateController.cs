@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 
-namespace Systems.StateSystem
+namespace Systems.Models
 {
-    public interface IStateSystem<EnumType>
+    public interface IStateController<EnumType>
     {
         public Task MoveToState(EnumType toState);
     }

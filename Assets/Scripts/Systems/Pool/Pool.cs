@@ -1,62 +1,75 @@
-using System;
 using System.Collections.Generic;
+using Ariel.Models;
 using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public class Pool<T> : IPool<T> where T : MonoBehaviour, IPoolAble<T>
+    public class Pool<T> : IPool<T> where T : BaseView
     {
+        private T _pooledObjectView;
+        private Queue<T> _poolQueue;
+        private Transform _parentTransform;
+        private Transform _poolRoot;
 
-        private Action<T> _onPullObject;
-        private Action<T> _onPushObject;
-        private Stack<T> _pooledObjects = new Stack<T>();
-        
-        private GameObject _poolPrefab;
-        private int PooledCount => _pooledObjects.Count;
+        private int PooledCount => _poolQueue.Count;
 
-        public Pool(GameObject poolObject, int prefillCount = 0)
+        public Pool(T pooledObjectView, Transform parentTransform, int poolCapacity)
         {
-            _poolPrefab = poolObject;
-            Spawn(prefillCount);
+            _pooledObjectView = pooledObjectView;
+            _parentTransform = parentTransform;
+            _poolQueue = new Queue<T>(poolCapacity);
+            
+            _poolRoot = new GameObject($"[{pooledObjectView.GetType().Name}] Pool").transform;
+            _poolRoot.SetParent(parentTransform, false);
+
+            for (var i = 0; i < poolCapacity; i++)
+            {
+                T item = Object.Instantiate(_pooledObjectView, _poolRoot).GetComponent<T>();
+                item.gameObject.SetActive(false);
+
+                _poolQueue.Enqueue(item);
+            }
         }
 
-        public Pool(GameObject poolObject, Action<T> onPullObject, Action<T> onPushObject, int prefillCount = 0)
-        {
-            _onPullObject = onPullObject;
-            _onPushObject = onPushObject;
-            _poolPrefab = poolObject;
-            Spawn(prefillCount);
-        }
 
         public T PullFromPool()
         {
-            T t;
-            if (PooledCount > 0)
-                t = _pooledObjects.Pop();
-            else
-                t = GameObject.Instantiate(_poolPrefab).GetComponent<T>();
-            
-            t.gameObject.SetActive(true);
-            
-            t.Init(PushToPool); // Secrete Sauce
-            
-            _onPullObject?.Invoke(t);
-            return t;
-        }
+            T item;
 
-        public void PushToPool(T t)
-        {
-            _pooledObjects.Push(t);
-            _onPushObject?.Invoke(t);
-            t.gameObject.SetActive(false);
-        }
-
-        private void Spawn(int prefillCount)
-        {
-            for (int i = 0; i < prefillCount; i++)
+            if (PooledCount == 0)
             {
-                PullFromPool();
+                item = Object.Instantiate(_pooledObjectView).GetComponent<T>();
+                return item;
             }
+
+            item = _poolQueue.Dequeue();
+            item.transform.SetParent(_parentTransform, false);
+            item.gameObject.SetActive(true);
+            return item;
+        }
+
+        public void PushToPool(T item)
+        {
+            item.gameObject.SetActive(false);
+            item.transform.localPosition = Vector3.zero;
+            item.transform.localEulerAngles = Vector3.zero;
+            item.transform.SetParent(_poolRoot, false);
+
+            _poolQueue.Enqueue(item);
+        }
+        
+        public void Dispose()
+        {
+            foreach (var item in _poolQueue)
+                Object.Destroy(item.gameObject);
+            
+
+            Object.Destroy(_poolRoot.gameObject);
+
+            _pooledObjectView = null;
+            _parentTransform = null;
+            _poolRoot = null;
+            _poolQueue = null;
         }
     }
 }

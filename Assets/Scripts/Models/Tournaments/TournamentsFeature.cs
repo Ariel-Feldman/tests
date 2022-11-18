@@ -11,8 +11,7 @@ namespace Ariel.Models
         
         public async Task<List<TournamentData>> LoadTournaments()
         {
-            var httpService = Injector.GetInstance<HttpService>();
-            var tournaments = httpService.Get<TournamentResponse>("urlhere");
+            var tournaments = HttpService.Get<TournamentResponse>("urlhere");
             
             return tournaments.Result.Tournaments;
         }

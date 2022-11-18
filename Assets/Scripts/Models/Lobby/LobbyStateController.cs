@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Systems.StateSystem;
+using Systems.Models;
 
 namespace Ariel.Models
 {
-    public class LobbyStateController : BaseController, IStateSystem<LobbyState>
+    public class LobbyStateController : BaseController, IStateController<LobbyState>
     {
         private LobbyState _currentState;
         private BaseController _currentContentController;

@@ -1,17 +1,24 @@
+using System.Collections.Generic;
+using Ariel.Utilities;
 using UnityEngine;
 
 namespace Ariel.Systems
 {
-    public static class PopupSystem
+    public class PopupSystem : Singleton<PopupSystem>
     {
-        public static void ShowErrorPopUp(BasePopup errorBasePopup)
-        {
-            PopupSystemView.Instance.ShowNextPopup(errorBasePopup);
-        }
+        [SerializeField] private PopupView _errorPopupView;
+        
+        private List<BasePopup> _popupQueue;
 
-        public static void ShowPopup(BasePopup basePopup)
+        public void CloseAllPopups()
         {
-            Debug.Log($"Popup raised here: {basePopup.Header}");
+            _errorPopupView.gameObject.SetActive(false);
+        }
+        
+        public void ShowErrorPopUp(BasePopup basePopup)
+        {
+            basePopup.SetPopupView(_errorPopupView);
+            _errorPopupView.gameObject.SetActive(true);
         }
     }
 }

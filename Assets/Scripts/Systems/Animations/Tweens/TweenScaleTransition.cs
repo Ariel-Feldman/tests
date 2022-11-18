@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public class TweenScaleTransition : TweenTransition
+    public class TweenScaleTransition : BaseTweenTransition
     {
         [SerializeField] private int _scaleStartValue;
         [SerializeField] private int _scaleEndValue;

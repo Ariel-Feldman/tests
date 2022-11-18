@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using Ariel.Utilities;
 
-namespace Ariel.Services
+namespace Ariel.Systems
 {
     using System.Collections;
     using UnityEngine.Events;
     using System;
     
-    public class MonoService : Singleton<MonoService>
+    public class MonoSystem : Singleton<MonoSystem>
     {
         public static UnityAction OnAppBackInFocus;
         public static UnityAction OnAppOutOfFocus;

@@ -4,7 +4,7 @@ using DG.DOTweenEditor;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(TweenTransition), true )]
+[CustomEditor(typeof(BaseTweenTransition), true )]
 public class PlayTweenInEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -16,7 +16,7 @@ public class PlayTweenInEditor : Editor
         
         if(GUILayout.Button("Play Tween"))
         {
-            var tt = (TweenTransition)target;
+            var tt = (BaseTweenTransition)target;
             tt.SetEditorPreviewTween();
             RunTween(tt);
         }
@@ -24,7 +24,7 @@ public class PlayTweenInEditor : Editor
         GUILayout.EndHorizontal();
     }
 
-    private void RunTween(TweenTransition tt)
+    private void RunTween(BaseTweenTransition tt)
     {
         DOTweenEditorPreview.PrepareTweenForPreview(tt.Tween, false);
         DOTweenEditorPreview.Start();

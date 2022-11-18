@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public class TweenShakeScaleTransition : TweenTransition
+    public class TweenShakeScaleTransition : BaseTweenTransition
     {
         [SerializeField] private Vector3 _strength;
         [SerializeField] private int _vibrato;

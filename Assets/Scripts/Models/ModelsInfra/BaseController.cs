@@ -21,7 +21,7 @@ namespace Ariel.Models
         
         protected T BindView<T>(bool activateViewOnBind = true) where T : BaseView
         {
-            var view = SceneViewCatalog.GetView<T>();
+            var view = SceneViewSystem.GetView<T>();
             view.gameObject.SetActive(activateViewOnBind);
             _views.Add(view);
             return view;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public abstract class TweenTransition : MonoBehaviour
+    public abstract class BaseTweenTransition : MonoBehaviour
     {
         public Action OnTransitionEnded;
         public Tween Tween { get; protected set; }

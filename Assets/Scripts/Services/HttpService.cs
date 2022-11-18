@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 namespace Ariel.Services
 {
-    public class HttpService : BaseService
+    public static class HttpService
     {
         private static HttpClient _client;
         private static ISerializationOption _serializationOption;
@@ -35,7 +35,7 @@ namespace Ariel.Services
             }
         }
         
-        public async Task<T> Get<T>(string url)
+        public static async Task<T> Get<T>(string url)
         {
             try
             {

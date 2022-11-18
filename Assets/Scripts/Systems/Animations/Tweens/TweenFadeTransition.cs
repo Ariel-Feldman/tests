@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public class TweenFadeTransition : TweenTransition
+    public class TweenFadeTransition : BaseTweenTransition
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _alphaEndValue;

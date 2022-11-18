@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
-    public class TweenRotationTransition : TweenTransition
+    public class TweenRotationTransition : BaseTweenTransition
     {
         [SerializeField] private Vector3 _endVector;
         [SerializeField] private RotateMode _rotateMode;
