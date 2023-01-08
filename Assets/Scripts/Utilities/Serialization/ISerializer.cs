@@ -1,6 +1,6 @@
 namespace Ariel.Utilities
 {
-    public interface ISerializationOption
+    public interface ISerializer
     {
         string ContentType { get; }
         T Deserialize<T>(string text);

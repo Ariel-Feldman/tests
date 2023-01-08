@@ -11,14 +11,14 @@ namespace Ariel.Services
     public static class HttpService
     {
         private static HttpClient _client;
-        private static ISerializationOption _serializationOption;
+        private static ISerializer _serializer;
 
         private const string TestAddress = "http://www.google.com/";
         
         public static async Task<bool> SetHttpClient()
         {
             _client = new HttpClient();
-            _serializationOption = new UnityJsonSerializer();
+            _serializer = new UnityJsonSerializer();
             
             if (Application.internetReachability == NetworkReachability.NotReachable)
                 return false;
@@ -40,7 +40,7 @@ namespace Ariel.Services
             try
             {
                 using var www = UnityWebRequest.Get(url);
-                www.SetRequestHeader("Content-Type", _serializationOption.ContentType);
+                www.SetRequestHeader("Content-Type", _serializer.ContentType);
                 var operation = www.SendWebRequest();
                 
                 while (!operation.isDone)
@@ -49,7 +49,7 @@ namespace Ariel.Services
                 if (www.result != UnityWebRequest.Result.Success)
                     Debug.LogError($"UnityWebRequest Failed: {www.error}");
                 
-                var result = _serializationOption.Deserialize<T>(www.downloadHandler.text);
+                var result = _serializer.Deserialize<T>(www.downloadHandler.text);
                 return result;
             }
             catch (Exception ex)
