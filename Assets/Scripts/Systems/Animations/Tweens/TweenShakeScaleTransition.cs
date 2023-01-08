@@ -13,7 +13,7 @@ namespace Ariel.Systems.Animations
 
         protected override void SetTweenInstance()
         {
-            Tween = _transform.DOShakeScale(_duration, _strength , _vibrato, _randomness,true ,ShakeRandomnessMode.Harmonic);
+            Tween = transform.DOShakeScale(_duration, _strength , _vibrato, _randomness,true ,ShakeRandomnessMode.Harmonic);
             if (_loop)
                 Tween.SetLoops(-1);
         }

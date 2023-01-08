@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using Ariel.Services;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,16 +11,18 @@ namespace Ariel.Systems.Animations
         public Action OnTransitionEnded;
         public Tween Tween { get; protected set; }
         
-        [SerializeField] protected Transform _transform;
         [SerializeField] protected float _duration;
         [SerializeField] protected Ease _ease;
+        [SerializeField] private float _onAwakeSecondsDelay;
         
         public Action RunInEditorEnded;
         
-        public void StartTransition()
+        public async Task StartTransition()
         {
             SetTween();
-            OnTweenStart(); // use this instead OnComplete in DOTween
+            OnTweenStart(); // Use this instead OnComplete in DOTween
+            if (_onAwakeSecondsDelay > 0)
+                await DelayService.Instance.WaitSeconds(_onAwakeSecondsDelay);
             Tween.Play();
         }
         
@@ -32,9 +36,8 @@ namespace Ariel.Systems.Animations
             Tween.OnComplete(() => OnTransitionEnded?.Invoke());
         }
         
-        // Editor Test code
-        // MIND DoTween callbacks dont work in editor so this is the fix
-        // And only on tween end
+        // Editor Tests code //
+        // MIND DoTween callbacks dont work in editor so this is the fix //
         public void SetEditorPreviewTween()
         {
             SetTween();

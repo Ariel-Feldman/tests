@@ -1,16 +1,17 @@
 using System.Threading.Tasks;
+using Ariel.Services;
 using Ariel.Systems;
 using UnityEngine;
 
 namespace Ariel.Models
 {
-    public class TournamentsTabController : BaseController
+    public class TournamentsController : BaseController
     {
-        private TournamentsTabView _view;
+        private TournamentsView _view;
 
         protected override void BindViews()
         {
-            _view = BindView<TournamentsTabView>();
+            _view = BindView<TournamentsView>();
         }
 
         public override void Init()
@@ -24,14 +25,14 @@ namespace Ariel.Models
             Debug.Log("Showing Tournaments");
             UiBlockerSystem.Instance.ShowFullScreenLoadingCircle();
             
-            var tournamentsFeature = Injector.GetInstance<TournamentsFeature>();
-            var tournaments = await tournamentsFeature.LoadTournaments();
+            // show loading screen?
             
+            TournamentResponse tournamentsResponse = await HttpService.Get<TournamentResponse>("urlhere");
             UiBlockerSystem.Instance.HideFullScreenLoadingCircle();
             
-            foreach (var tournament in tournaments)
+            foreach (var tournament in tournamentsResponse.Tournaments)
             {
-                TournamentsTabController tournamentsTabController = Injector.GetInstance<TournamentsTabController>();
+                TournamentsController tournamentsController = Injector.GetInstance<TournamentsController>();
                 // var TournamentView = ViewResolver.GetView<TournamentView>();
             }
         }

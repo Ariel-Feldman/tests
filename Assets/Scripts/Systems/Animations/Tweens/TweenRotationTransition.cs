@@ -10,7 +10,7 @@ namespace Ariel.Systems.Animations
     
         protected override void SetTweenInstance()
         {
-            Tween = _transform.DORotate(_endVector, _duration, _rotateMode);
+            Tween = transform.DORotate(_endVector, _duration, _rotateMode);
         }
     }
 }

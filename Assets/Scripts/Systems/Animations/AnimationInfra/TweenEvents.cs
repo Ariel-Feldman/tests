@@ -15,8 +15,8 @@ namespace Ariel.Systems.Animations
         {
             if (baseTweenTransitionIn != null)
             {
-                baseTweenTransitionIn.StartTransition();
                 baseTweenTransitionIn.OnTransitionEnded += OnTransitionInEnded;
+                baseTweenTransitionIn.StartTransition();
             }
         }
 

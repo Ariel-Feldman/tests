@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Ariel.Config
@@ -6,14 +7,10 @@ namespace Ariel.Config
     {
         public static void SetEmbeddedConfigs()
         {
-            SetQualitySettings();
-        }
-
-
-        private static void SetQualitySettings()
-        {
             Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 0;
+            DOTween.Init();
+            DOTween.defaultAutoPlay = AutoPlay.None;
         }
     }
 }

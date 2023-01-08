@@ -13,21 +13,21 @@ namespace Ariel.Systems.Animations
         
         protected override void SetTweenInstance()
         {
-            Tween = _transform.DOMove(_endPosition.position, _duration);
+            Tween = transform.DOMove(_endPosition.position, _duration);
         }
 
         protected override void OnTweenStart()
         {
-            _transform.localPosition = _startPostion.localPosition;
+            transform.localPosition = _startPostion.localPosition;
         }
 
         // Editor Preview  
         protected override void GetEditorStartValue()
         {
-            _positionEditorValue = new Vector3(_transform.localPosition.x, _transform.localPosition.y, _transform.localPosition.z);
+            _positionEditorValue = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
         }
 
-        protected override void SetEditorStartValue() => _transform.localPosition = _positionEditorValue;
+        protected override void SetEditorStartValue() => transform.localPosition = _positionEditorValue;
     }
 
 }

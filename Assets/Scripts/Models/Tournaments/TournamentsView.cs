@@ -1,7 +1,7 @@
 
 namespace Ariel.Models
 {
-    public class TournamentsTabView : BaseView
+    public class TournamentsView : BaseView
     {
         
     }

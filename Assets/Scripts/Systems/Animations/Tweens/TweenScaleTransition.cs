@@ -10,19 +10,22 @@ namespace Ariel.Systems.Animations
         
         private Vector3 _scaleEditorValue;
         
-        
         protected override void SetTweenInstance()
         {
-            Tween = _transform.DOScale(_scaleEndValue, _duration);
+            Tween = transform.DOScale(_scaleEndValue, _duration);
         }
 
-        protected override void OnTweenStart() => _transform.localScale = Vector3.one * _scaleStartValue;
+        protected override void OnTweenStart()
+        {
+            transform.localScale = Vector3.one * _scaleStartValue;
+        }
         
         protected override void GetEditorStartValue()
         {
-            _scaleEditorValue = new Vector3(transform.localScale.x, transform.localScale.y);
+            var localScale = transform.localScale;
+            _scaleEditorValue = new Vector3(localScale.x, localScale.y);
         }
 
-        protected override void SetEditorStartValue() => _transform.localScale = _scaleEditorValue;
+        protected override void SetEditorStartValue() => transform.localScale = _scaleEditorValue;
     }
 }
