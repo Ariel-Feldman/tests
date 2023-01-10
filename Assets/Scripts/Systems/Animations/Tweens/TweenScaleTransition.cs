@@ -15,7 +15,7 @@ namespace Ariel.Systems.Animations
             Tween = transform.DOScale(_scaleEndValue, _duration);
         }
 
-        protected override void OnTweenStart()
+        protected override void SetTweenStart()
         {
             transform.localScale = Vector3.one * _scaleStartValue;
         }

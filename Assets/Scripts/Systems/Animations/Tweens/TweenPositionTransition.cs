@@ -5,20 +5,22 @@ namespace Ariel.Systems.Animations
 {
     public class TweenPositionTransition : BaseTweenTransition
     {
-        [SerializeField] private Transform _startPostion;
-        [SerializeField] private Transform _endPosition;
-        
+        [SerializeField] private Vector3 _reletiveStartPostion;
+        [SerializeField] private Vector3 _reletiveEndPosition;
+
+        private Vector3 _positionValueOrigin;
         private Vector3 _positionEndValue;
         private Vector3 _positionEditorValue;
         
         protected override void SetTweenInstance()
         {
-            Tween = transform.DOMove(_endPosition.position, _duration);
+            _positionValueOrigin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Tween = transform.DOMove(_positionValueOrigin + _reletiveEndPosition, _duration);
         }
 
-        protected override void OnTweenStart()
+        protected override void SetTweenStart()
         {
-            transform.localPosition = _startPostion.localPosition;
+            transform.localPosition = _positionValueOrigin + _reletiveStartPostion;
         }
 
         // Editor Preview  

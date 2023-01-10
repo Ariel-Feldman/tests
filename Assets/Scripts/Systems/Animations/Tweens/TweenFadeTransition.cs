@@ -17,7 +17,7 @@ namespace Ariel.Systems.Animations
             Tween = _canvasGroup.DOFade(_alphaEndValue, _duration);
         }
 
-        protected override void OnTweenStart() => _canvasGroup.alpha = _alphaStartValue;
+        protected override void SetTweenStart() => _canvasGroup.alpha = _alphaStartValue;
         
         // Editor Preview  
         protected override void GetEditorStartValue() => _alphaEditorValue = _canvasGroup.alpha;

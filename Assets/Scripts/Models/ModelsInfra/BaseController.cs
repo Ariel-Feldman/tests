@@ -27,13 +27,14 @@ namespace Ariel.Models
             return view;
         }
 
-        protected T CreateController<T>() where T : BaseController, new()
+        protected T GetController<T>() where T : BaseController, new()
         {
             var controller = Injector.GetInstance<T>();
-            _subControllers.Add(controller);
+            
+            if (!_subControllers.Contains(controller))
+                _subControllers.Add(controller);
             
             controller.BindViews();
-            
             return controller;
         }
         

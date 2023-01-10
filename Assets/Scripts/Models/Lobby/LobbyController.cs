@@ -4,10 +4,10 @@ namespace Ariel.Models
     {
         public override void Init()
         {
-            var resourceBarController = CreateController<ResourceBarController>();
+            var resourceBarController = GetController<ResourceBarController>();
             resourceBarController.Init();
 
-            var lobbyStateController = CreateController<LobbyStateController>();
+            var lobbyStateController = GetController<LobbyStateController>();
             lobbyStateController.Init();
         }
     }

@@ -34,7 +34,7 @@ namespace Ariel.Models
             switch (toState)
             {
                 case LobbyState.Tournaments:
-                    _currentContentController = CreateController<TournamentsController>();
+                    _currentContentController = GetController<TournamentsController>();
                     break;
 
                 case LobbyState.Store:

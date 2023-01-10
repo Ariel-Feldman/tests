@@ -20,14 +20,14 @@ namespace Ariel.Systems.Animations
         public async Task StartTransition()
         {
             SetTween();
-            OnTweenStart(); // Use this instead OnComplete in DOTween
+            SetTweenStart(); // Use this instead OnStart in DOTween
             if (_onAwakeSecondsDelay > 0)
                 await DelayService.Instance.WaitSeconds(_onAwakeSecondsDelay);
             Tween.Play();
         }
         
         protected abstract void SetTweenInstance();
-        protected virtual void OnTweenStart() {}
+        protected virtual void SetTweenStart() {}
 
         private void SetTween()
         {
@@ -36,13 +36,13 @@ namespace Ariel.Systems.Animations
             Tween.OnComplete(() => OnTransitionEnded?.Invoke());
         }
         
-        // Editor Tests code //
+        // Editor Tests code only! //
         // MIND DoTween callbacks dont work in editor so this is the fix //
         public void SetEditorPreviewTween()
         {
             SetTween();
             GetEditorStartValue();
-            OnTweenStart();
+            SetTweenStart();
 
             Tween.OnComplete(EditorRunEnded);
             void EditorRunEnded()
