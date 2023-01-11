@@ -3502,7 +3502,7 @@ MonoBehaviour:
   _duration: 1
   _ease: 0
   _onAwakeSecondsDelay: 0
-  _reletiveStartPostion: {x: 0, y: 10, z: 0}
+  _reletiveStartPostion: {x: 0, y: 500, z: 0}
   _reletiveEndPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1379091306
 MonoBehaviour:

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 
 namespace Ariel.Systems.Animations
@@ -21,6 +22,8 @@ namespace Ariel.Systems.Animations
         protected override void SetTweenStart()
         {
             transform.localPosition = _positionValueOrigin + _reletiveStartPostion;
+            var canvasPosition = transform.root.GetComponent<Canvas>().transform.position;
+            transform.localPosition -= canvasPosition;
         }
 
         // Editor Preview  
@@ -29,7 +32,10 @@ namespace Ariel.Systems.Animations
             _positionEditorValue = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
         }
 
-        protected override void SetEditorStartValue() => transform.localPosition = _positionEditorValue;
+        protected override void SetEditorStartValue()
+        {
+            transform.localPosition = _positionEditorValue;
+        }
     }
 
 }
