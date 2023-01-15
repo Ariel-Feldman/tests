@@ -23,7 +23,7 @@ namespace Ariel.Systems
             }
 
 
-            _viewMap[CurrentSceneIndex].SetViewsInactive();
+            // _viewMap[CurrentSceneIndex].SetViewsInactive();
             
             // Debug
             // var viewsDebug = _viewMap[CurrentSceneIndex].SceneViews;
@@ -37,8 +37,7 @@ namespace Ariel.Systems
         
         public static T GetView<T>() where T : BaseView
         {
-            BaseView view;
-            view = _viewMap[CurrentSceneIndex].GetView(typeof(T));
+            BaseView view = _viewMap[CurrentSceneIndex].GetView(typeof(T));
             
             if (view == null)
                 Debug.LogWarning($"Failed to get view type: {typeof(T)}");

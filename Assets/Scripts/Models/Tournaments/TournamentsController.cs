@@ -7,16 +7,11 @@ namespace Ariel.Models
 {
     public class TournamentsController : BaseController
     {
-        private TournamentsView _view;
-
-        protected override void BindViews()
-        {
-            _view = BindView<TournamentsView>();
-        }
+        private TournamentsView _tournamentsView => GetView<TournamentsView>();
+        
 
         public override void Init()
         {
-            base.Init();
             LoadTournament();
         }
 

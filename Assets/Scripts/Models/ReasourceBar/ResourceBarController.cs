@@ -1,11 +1,14 @@
+using UnityEngine;
+
 namespace Ariel.Models
 {
     public class ResourceBarController : BaseController
     {
-        private ResourceBarView _view;
-        protected override void BindViews()
+        private ResourceBarView _resourceBarView => GetView<ResourceBarView>();
+
+        public override void Init()
         {
-            _view = BindView<ResourceBarView>();
+            // _resourceBarView.gameObject.SetActive(true);
         }
     }
 }

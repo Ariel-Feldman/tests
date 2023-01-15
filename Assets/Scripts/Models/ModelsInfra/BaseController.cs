@@ -13,33 +13,29 @@ namespace Ariel.Models
         
         public async Task TransitionOut()
         {
-            await SubControllersOutRecursion();
+            await SubControllersTransitionOut();
             await ViewTransitionOut();
         }
         
-        protected virtual void BindViews() { }
-        
-        protected T BindView<T>(bool activateViewOnBind = true) where T : BaseView
-        {
-            var view = SceneViewSystem.GetView<T>();
-            view.gameObject.SetActive(activateViewOnBind);
-            _views.Add(view);
-            return view;
-        }
-
-        protected T GetController<T>() where T : BaseController, new()
+        protected T GetController<T>(BaseController parentController = null) where T : BaseController, new()
         {
             var controller = Injector.GetInstance<T>();
+            if (parentController != null && !_subControllers.Contains(controller)) 
+                    _subControllers.Add(controller);
             
-            if (!_subControllers.Contains(controller))
-                _subControllers.Add(controller);
-            
-            controller.BindViews();
             return controller;
         }
         
-
-        private async Task SubControllersOutRecursion()
+        protected T GetView<T>() where T : BaseView
+        {
+            var view = SceneViewSystem.GetView<T>();
+            if (!_views.Contains(view))
+                _views.Add(view);
+            
+            return view;
+        }
+        
+        private async Task SubControllersTransitionOut()
         {
             if (_subControllers.Count == 0)
                 return;

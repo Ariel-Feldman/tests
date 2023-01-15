@@ -8,14 +8,7 @@ namespace Ariel.Models
         private LobbyState _currentState;
         private BaseController _currentContentController;
         private BaseController _currentButtonController;
-
-        private LobbyStateView _view;
-
-        protected override void BindViews()
-        {
-            _view = BindView<LobbyStateView>();
-        }
-
+        
         public override void Init()
         {
             MoveToState(LobbyState.Tournaments);
@@ -34,20 +27,20 @@ namespace Ariel.Models
             switch (toState)
             {
                 case LobbyState.Tournaments:
-                    _currentContentController = GetController<TournamentsController>();
+                    _currentContentController = GetController<TournamentsController>(this);
                     break;
 
                 case LobbyState.Store:
-                    // _currentContentController = GetController<StoreTabController>();
+                    // _currentContentController = GetController<StoreTabController>(this);
                     break;
 
                 case LobbyState.Account:
-                    // _currentContentController = GetController<AccountTabController>();
+                    // _currentContentController = GetController<AccountTabController>(this);
 
                     break;
 
                 case LobbyState.Social:
-                    // _currentContentController = GetController<CRMTabController>();
+                    // _currentContentController = GetController<CRMTabController>(this);
 
                     break;
             }
