@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Ariel.Models;
+using Ariel.Features;
 using UnityEngine;
 
 namespace Ariel.Systems
@@ -10,10 +10,8 @@ namespace Ariel.Systems
         private Queue<T> _poolQueue;
         private Transform _parentTransform;
         private Transform _poolRoot;
-
-        private int PooledCount => _poolQueue.Count;
-
-        public Pool(T pooledObjectView, Transform parentTransform, int poolCapacity)
+        
+        public void InitPool(T pooledObjectView, Transform parentTransform, int poolCapacity)
         {
             _pooledObjectView = pooledObjectView;
             _parentTransform = parentTransform;
@@ -32,11 +30,11 @@ namespace Ariel.Systems
         }
 
 
-        public T PullFromPool()
+        public T GetFromPool()
         {
             T item;
 
-            if (PooledCount == 0)
+            if (_poolQueue.Count == 0)
             {
                 item = Object.Instantiate(_pooledObjectView).GetComponent<T>();
                 return item;
@@ -58,7 +56,7 @@ namespace Ariel.Systems
             _poolQueue.Enqueue(item);
         }
         
-        public void Dispose()
+        public void DisposePool()
         {
             foreach (var item in _poolQueue)
                 Object.Destroy(item.gameObject);

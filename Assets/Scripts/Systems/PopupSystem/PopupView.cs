@@ -1,5 +1,5 @@
 using System;
-using Ariel.Models;
+using Ariel.Features;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;

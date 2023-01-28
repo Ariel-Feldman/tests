@@ -22,7 +22,7 @@ namespace Ariel.Systems.Animations
             SetTween();
             SetTweenStart(); // Use this instead OnStart in DOTween
             if (_onAwakeSecondsDelay > 0)
-                await DelayService.Instance.WaitSeconds(_onAwakeSecondsDelay);
+                await MonoSystem.Instance.WaitSeconds(_onAwakeSecondsDelay);
             Tween.Play();
         }
         

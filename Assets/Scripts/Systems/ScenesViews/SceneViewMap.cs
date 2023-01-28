@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
-using Ariel.Models;
+using Ariel.Features;
 
 namespace Ariel.Systems
 {
     public class SceneViewMap
     {
-        public readonly Dictionary<Type, BaseView> SceneViews;
+        private readonly Dictionary<Type, BaseView> _sceneViews;
         
         public SceneViewMap(BaseView[] views)
         {
-            SceneViews = new();
+            _sceneViews = new();
             foreach (var view in views)
-                SceneViews.Add(view.GetType(), view);
+                _sceneViews.Add(view.GetType(), view);
         }
         
         public void SetViewsInactive()
         {
-            foreach (var keyValue in SceneViews)
+            foreach (var keyValue in _sceneViews)
             {
                 keyValue.Value.DeactivateView();
             }
@@ -25,7 +25,7 @@ namespace Ariel.Systems
 
         public BaseView GetView(Type type)
         {
-            SceneViews.TryGetValue(type, out BaseView view);
+            _sceneViews.TryGetValue(type, out BaseView view);
             return view;
         }
         

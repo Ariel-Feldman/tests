@@ -8,16 +8,16 @@ namespace Ariel.Systems
     {
         [SerializeField] private PopupView _errorPopupView;
         
-        private List<BasePopup> _popupQueue;
+        private List<BasePopupData> _popupQueue;
 
         public void CloseAllPopups()
         {
             _errorPopupView.gameObject.SetActive(false);
         }
         
-        public void ShowErrorPopUp(BasePopup basePopup)
+        public void ShowErrorPopUp(BasePopupData basePopupData)
         {
-            basePopup.SetPopupView(_errorPopupView);
+            basePopupData.SetPopupView(_errorPopupView);
             _errorPopupView.gameObject.SetActive(true);
         }
     }
