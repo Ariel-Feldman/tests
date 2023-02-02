@@ -1,7 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-public class uGUITools : MonoBehaviour {
+public class uGUITools : EditorWindow 
+{
 	[MenuItem("uGUI/Anchors to Corners %[")]
 	static void AnchorsToCorners(){
 		RectTransform t = Selection.activeTransform as RectTransform;

@@ -5,18 +5,13 @@ using UnityEngine;
 public class SafeArea : MonoBehaviour
 {
     private RectTransform _rectTransform;
-
-    private void OnRectTransformDimensionsChange()
-    {
-        // await MonoSystem.Instance.AwaitFrames(1);
-        ApplySafeArea();
-    }
-
+    
     private void Start()
     {
         ApplySafeArea();
     }
 
+    [ContextMenu("Generate SafeArea")]
     private void ApplySafeArea()
     {
         _rectTransform = GetComponent<RectTransform>();

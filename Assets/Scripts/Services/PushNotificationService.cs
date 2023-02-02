@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Unity.Notifications.iOS;
+// using Unity.Notifications.iOS;
 
 namespace Ariel.Services
 {
@@ -10,8 +10,7 @@ namespace Ariel.Services
 
         public static async Task Setup(string userID)
         {
-            var authorizationRequest = new AuthorizationRequest(AuthorizationOption.Provisional, DeviceService.IsIOS());
-            
+            // var authorizationRequest = new AuthorizationRequest(AuthorizationOption.Provisional, DeviceService.IsIOS());
         }
     }
 }
