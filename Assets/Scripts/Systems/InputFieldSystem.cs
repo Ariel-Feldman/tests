@@ -1,19 +1,86 @@
+using System;
+using System.Threading.Tasks;
+using Ariel.Systems;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputFieldSystem : MonoBehaviour
 {
+    
     [SerializeField] private TMP_InputField _inputField;
     [SerializeField] private TMP_Text _loger;
+    [SerializeField] private Button _submitButton;
     
-    private void Update()
+    public Action<string> onTextSubmited;
+        
+    private float _originalHeight;
+    private bool _isDestroyed;
+
+    private void Awake()
     {
-        _loger.text = GetKeyboardHeight().ToString();
-        transform.position = new Vector3(0, GetKeyboardHeight(), 0);
+        _inputField.onSelect.AddListener(OnKeyboardOpen);
+        _inputField.onDeselect.AddListener(OnKeyboardClosed);
+        _inputField.onValueChanged.AddListener(OnValueChanged);
+        _submitButton.onClick.AddListener(OnClickSubmit);
+            
+        _isDestroyed = false;
+        _originalHeight = transform.position.y;
+
     }
+
+    private void OnDestroy()
+    {
+        _inputField.onSelect.RemoveListener(OnKeyboardOpen);
+        _inputField.onDeselect.RemoveListener(OnKeyboardClosed);
+        _inputField.onValueChanged.RemoveListener(OnValueChanged);
+        _submitButton.onClick.RemoveListener(OnClickSubmit);   
+        
+        _isDestroyed = true;
+    }
+
+    private void OnKeyboardOpen(string arg0)
+    {
+        SetPositionHeight();
+    }
+
+    private async Task SetPositionHeight()
+    {
+        float keyboardHeight;
+        float newHeight;
+        
+        for (var i = 0; i < 200; i++)
+        {
+            if (_isDestroyed) break;
+            keyboardHeight = GetKeyboardHeight();
+            newHeight = keyboardHeight > _originalHeight ? keyboardHeight : _originalHeight;
+            transform.position = new Vector3(transform.position.x, newHeight, 0);
+            await MonoSystem.Instance.WaitFrames(1);
+        }
+    }
+
+
+    private void OnKeyboardClosed(string arg0)
+    {
+        SetPositionHeight();
+        _loger.text = "OnKeyboardClosed: " + arg0;
+    }
+
+    private void OnClickSubmit()
+    {
+        SetPositionHeight();
+        _loger.text = "Submit Clicked! :" + _inputField.text;
+    }
+
+    private void OnValueChanged(string text)
+    {
+        onTextSubmited?.Invoke(text);
+        _loger.text = text;
+    }
+
+//  //  //
     
-    
-    public float GetKeyboardHeight(bool includeInput = false)
+    private float GetKeyboardHeight(bool includeInput = false)
     {
 #if UNITY_ANDROID
         using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
