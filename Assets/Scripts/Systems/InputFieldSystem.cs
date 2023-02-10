@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Ariel.Systems;
 using TMPro;
@@ -7,76 +6,79 @@ using UnityEngine.UI;
 
 public class InputFieldSystem : MonoBehaviour
 {
-    
     [SerializeField] private TMP_InputField _inputField;
     [SerializeField] private TMP_Text _loger;
     [SerializeField] private Button _submitButton;
+    [SerializeField] private Button _submitButtonCopy;
     
-    public Action<string> onTextSubmited;
+    // public Action<string> onTextSubmitted; // for production :)
         
     private float _originalHeight;
     private bool _isDestroyed;
 
     private void Awake()
     {
+        _originalHeight = transform.position.y;
         _inputField.onSelect.AddListener(OnKeyboardOpen);
         _inputField.onDeselect.AddListener(OnKeyboardClosed);
         _inputField.onValueChanged.AddListener(OnValueChanged);
         _submitButton.onClick.AddListener(OnClickSubmit);
-            
+        _submitButtonCopy.onClick.AddListener(OnClickSubmit);
+        
+        // _inputField.richText = true; // Inject emojis
+
+        TouchScreenKeyboard.Android.consumesOutsideTouches = false; // Prevents keyboard from closing when touching outside of keyboard
         _isDestroyed = false;
-        _originalHeight = transform.position.y;
-
     }
-
+    
+    private void OnClickSubmit()
+    {
+        _loger.text = "Submit Clicked!!! :" + _inputField.text;
+        _inputField.text = string.Empty;
+    }
+    
     private void OnDestroy()
     {
         _inputField.onSelect.RemoveListener(OnKeyboardOpen);
         _inputField.onDeselect.RemoveListener(OnKeyboardClosed);
         _inputField.onValueChanged.RemoveListener(OnValueChanged);
         _submitButton.onClick.RemoveListener(OnClickSubmit);   
+        _submitButtonCopy.onClick.RemoveListener(OnClickSubmit);   
         
         _isDestroyed = true;
     }
-
-    private void OnKeyboardOpen(string arg0)
-    {
-        SetPositionHeight();
-    }
-
+    
     private async Task SetPositionHeight()
     {
         float keyboardHeight;
         float newHeight;
         
-        for (var i = 0; i < 200; i++)
+        for (var i = 0; i < 2000; i++) // giving 200 frame for adjusting height
         {
             if (_isDestroyed) break;
+            
             keyboardHeight = GetKeyboardHeight();
             newHeight = keyboardHeight > _originalHeight ? keyboardHeight : _originalHeight;
             transform.position = new Vector3(transform.position.x, newHeight, 0);
             await MonoSystem.Instance.WaitFrames(1);
         }
     }
-
-
+    
     private void OnKeyboardClosed(string arg0)
     {
         SetPositionHeight();
-        _loger.text = "OnKeyboardClosed: " + arg0;
     }
 
-    private void OnClickSubmit()
+    private void OnValueChanged(string arg0)
+    {
+        // _loger.text = "OnValueChanged: " + arg0;
+        SetPositionHeight();
+    }
+    
+    private void OnKeyboardOpen(string arg0)
     {
         SetPositionHeight();
-        _loger.text = "Submit Clicked! :" + _inputField.text;
-    }
-
-    private void OnValueChanged(string text)
-    {
-        onTextSubmited?.Invoke(text);
-        _loger.text = text;
-    }
+    }  
 
 //  //  //
     
