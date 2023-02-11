@@ -17,10 +17,8 @@ public class InputFieldSystem : MonoBehaviour
 
     private void Awake()
     {
-        TouchScreenKeyboard.Android.consumesOutsideTouches = false; // Prevents keyboard from closing when touching outside of keyboard
-
+        TouchScreenKeyboard.Android.consumesOutsideTouches = false;
         _originalHeight = transform.position.y;
-        
         _inputField.onSelect.AddListener(OnKeyboardOpen);
         _inputField.onDeselect.AddListener(OnKeyboardClosed);
         _inputField.onValueChanged.AddListener(OnValueChanged);
@@ -31,11 +29,7 @@ public class InputFieldSystem : MonoBehaviour
         _isDestroyed = false;
     }
     
-    private void OnSubmitLegacy(string arg0)
-    {
-        _loger.text = "Submit Clicked!!! :" + _inputField.text;
-        _inputField.text = string.Empty;
-    }
+    
 
     private void OnClickSubmit()
     {
@@ -87,7 +81,7 @@ public class InputFieldSystem : MonoBehaviour
 
 //  //  //
     
-    private float GetKeyboardHeight(bool includeInput = true)
+    private float GetKeyboardHeight(bool includeInput = false)
     {
 #if UNITY_ANDROID
         using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
