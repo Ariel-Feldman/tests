@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Ariel.Systems;
 using TMPro;
@@ -9,8 +10,6 @@ public class InputFieldSystem : MonoBehaviour
     [SerializeField] private TMP_InputField _inputField;
     [SerializeField] private TMP_Text _loger;
     [SerializeField] private Button _submitButton;
-    [SerializeField] private Button _submitButtonCopy;
-    
     // public Action<string> onTextSubmitted; // for production :)
         
     private float _originalHeight;
@@ -18,19 +17,26 @@ public class InputFieldSystem : MonoBehaviour
 
     private void Awake()
     {
+        TouchScreenKeyboard.Android.consumesOutsideTouches = false; // Prevents keyboard from closing when touching outside of keyboard
+
         _originalHeight = transform.position.y;
+        
         _inputField.onSelect.AddListener(OnKeyboardOpen);
         _inputField.onDeselect.AddListener(OnKeyboardClosed);
         _inputField.onValueChanged.AddListener(OnValueChanged);
         _submitButton.onClick.AddListener(OnClickSubmit);
-        _submitButtonCopy.onClick.AddListener(OnClickSubmit);
         
+        // _inputFieldUnity.onValidateInput
         // _inputField.richText = true; // Inject emojis
-
-        TouchScreenKeyboard.Android.consumesOutsideTouches = false; // Prevents keyboard from closing when touching outside of keyboard
         _isDestroyed = false;
     }
     
+    private void OnSubmitLegacy(string arg0)
+    {
+        _loger.text = "Submit Clicked!!! :" + _inputField.text;
+        _inputField.text = string.Empty;
+    }
+
     private void OnClickSubmit()
     {
         _loger.text = "Submit Clicked!!! :" + _inputField.text;
@@ -43,7 +49,6 @@ public class InputFieldSystem : MonoBehaviour
         _inputField.onDeselect.RemoveListener(OnKeyboardClosed);
         _inputField.onValueChanged.RemoveListener(OnValueChanged);
         _submitButton.onClick.RemoveListener(OnClickSubmit);   
-        _submitButtonCopy.onClick.RemoveListener(OnClickSubmit);   
         
         _isDestroyed = true;
     }
@@ -82,7 +87,7 @@ public class InputFieldSystem : MonoBehaviour
 
 //  //  //
     
-    private float GetKeyboardHeight(bool includeInput = false)
+    private float GetKeyboardHeight(bool includeInput = true)
     {
 #if UNITY_ANDROID
         using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
