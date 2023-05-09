@@ -1,29 +1,26 @@
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
 
 namespace Ariel.Systems.Animations
 {
     public class TweenPositionTransition : BaseTweenTransition
     {
-        [SerializeField] private Vector3 _reletiveStartPostion;
-        [SerializeField] private Vector3 _reletiveEndPosition;
+        [SerializeField] private Transform _startPostion;
 
         private Vector3 _positionValueOrigin;
         private Vector3 _positionEndValue;
         private Vector3 _positionEditorValue;
         
+        
         protected override void SetTweenInstance()
         {
-            _positionValueOrigin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            Tween = transform.DOMove(_positionValueOrigin + _reletiveEndPosition, _duration);
+            Tween = transform.DOLocalMove(_positionEndValue, _duration, true);
         }
 
         protected override void SetTweenStart()
         {
-            transform.localPosition = _positionValueOrigin + _reletiveStartPostion;
-            var canvasPosition = transform.root.GetComponent<Canvas>().transform.position;
-            transform.localPosition -= canvasPosition;
+            _positionEndValue = transform.localPosition;
+            transform.localPosition = _startPostion.localPosition;
         }
 
         // Editor Preview  
